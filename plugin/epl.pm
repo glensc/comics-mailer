@@ -18,7 +18,7 @@ sub get_url {
 	s/>/$&\n/gm;
 	@_ = split /[\r\n]+/;
 	while ($_ = shift(@_)) {
-		next unless m#<img src="(http://images\.epl\.ee/g/pics/.+)" alt="(.+)" border="0">#;
+		next unless m#<img src="(http://static\.epl\.ee/g/pics/.+)" alt="(.+)" border="0"#;
 		$this->add_comic($1, $2);
 	}
 }
