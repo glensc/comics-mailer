@@ -53,24 +53,9 @@ sub compose_mail {
 	<head>
 	<meta name="qrichtext" content="1" />
 	<style>
-	body {
-		background-color: white;
-	}
-	img {
-		border: 1px outset black;
-		width: 574px;
-		display: block;
-		padding: 2px;
-	}
-	b {
-		color: #79965f;
-		font-size: 12pt;
-		font-family: Verdana, Arial, Helvetica;
-		font-weight: bold;
-		display: block;
-		padding-top: 6px;
-		padding-left: 6px;
-	}
+	body { background-color: white; }
+	img { border: 1px outset black; width: 574px; display: block; padding: 2px; }
+	b { color: #79965f; font-size: 12pt; font-family: Verdana, Arial, Helvetica; font-weight: bold; display: block; padding-top: 6px; padding-left: 6px; }
 	</style>
 	</head>
 	<body>
