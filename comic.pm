@@ -47,23 +47,48 @@ sub compose_mail {
 		'Type'				=> 'multipart/related';
 
 
-	my $body = '<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+	my $body = '
+	<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 	<html>
-	<table border=0 bgcolor="#ffffff" cellpadding=0 cellspacing=0 width=574>
+	<head>
+	<meta name="qrichtext" content="1" />
+	<style>
+	body {
+		background-color: white;
+	}
+	img {
+		border: 1px outset black;
+		width: 574px;
+		display: block;
+		padding: 2px;
+	}
+	b {
+		color: #79965f;
+		font-size: 12pt;
+		font-family: Verdana, Arial, Helvetica;
+		font-weight: bold;
+		display: block;
+		padding-top: 6px;
+		padding-left: 6px;
+	}
+	</style>
+	</head>
+	<body>
 	';
 
 	my @data = @{ $this->{data} };
 	foreach (@data) {
 		foreach (values(%$_)) {
 			my %h = %$_;
+			printf "cid: %s\n", $h{content_id} if $main::debug;
 			next unless $h{content_id};
-			$body .= sprintf("<tr><td width=100%%><img border=1 alt=\"%s\" src=cid:%s><br></td></tr>\n",
-				$h{desc}, $h{content_id});
+			$body .= sprintf("<b>%s</b><img alt=\"%s\" src=\"cid:%s\">\n",
+				$h{desc}, $h{desc}, $h{content_id});
 		}
 	}
 
 	$body .= '
-	</table><p>
+	</body>
 	</html>
 	';
 
@@ -93,7 +118,6 @@ sub mailer {
 
 	my @recip = (ref $_[0] ? $_[0] : @_);
 
-
 	use Mail::Mailer;
 
 	my $hdr = $ent->head->header_hashref;
@@ -105,6 +129,14 @@ sub mailer {
 		print $fh $body;
 		$fh->close;
 	}
+}
+
+sub dump {
+	my $this = shift;
+	my $ent = $this->{attach};
+
+	print $ent->head->header_hashref;
+	print $ent->stringify_body;
 }
 
 sub mail_attach {
