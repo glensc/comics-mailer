@@ -61,7 +61,6 @@ sub compose_mail {
 				$h{desc}, $h{content_id});
 		}
 	}
-	print "finished\n";
 
 	$body .= '
 	</table><p>
