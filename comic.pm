@@ -54,8 +54,8 @@ sub compose_mail {
 	<meta name="qrichtext" content="1" />
 	<style>
 	body { background-color: white; }
-	img { border: 1px outset black; width: 574px; display: block; padding: 2px; }
-	b { color: #79965f; font-size: 11pt; font-family: Verdana, Arial, Helvetica; font-weight: bold; display: block; padding-top: 6px; padding-left: 6px; }
+	img { border: 1px outset black; width: 574px; display: block; }
+	b { color: #79965f; font-size: 11pt; font-family: Verdana, Arial, Helvetica; font-weight: bold; display: block; padding-left: 6px; }
 	</style>
 	</head>
 	<body>
@@ -67,7 +67,7 @@ sub compose_mail {
 			my %h = %$_;
 			printf "cid: %s\n", $h{content_id} if $main::debug;
 			next unless $h{content_id};
-			$body .= sprintf("<b>%s</b><img alt=\"%s\" src=\"cid:%s\">\n",
+			$body .= sprintf("<b><div>%s</div></b><img alt=\"%s\" src=\"cid:%s\">\n",
 				$h{desc}, $h{desc}, $h{content_id});
 		}
 	}
