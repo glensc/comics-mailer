@@ -27,8 +27,9 @@ sub http_request {
 	my $this = shift;
 	my $url = shift;
 
-	print "http_request: $url\n"; # if $main::debug;
+	print "http_request: $url..."; # if $main::debug;
     my $res = $ua->request(HTTP::Request->new(GET => $url));
+	print "DONE\n";
 	return $res;
 }
 
