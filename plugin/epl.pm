@@ -7,17 +7,13 @@ my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
 
-use POSIX qw/strftime/;
-my $url = "http://www.epl.ee/koomiks.php";
-
-
+my $baseurl = "http://www.epl.ee/koomiks.php";
 
 sub get_url {
 	my $this = shift;
-	my $t = $_[0] ? shift : time;
-	my $date = strftime("%Y-%m-%d", localtime($t));
+	my $date = $this->strftime("%Y-%m-%d");
 
-	local $_ = $this->fetch_url("$url?KP=$date") or return;
+	local $_ = $this->fetch_url("$baseurl?KP=$date") or return;
 
 	s/>/$&\n/gm;
 	@_ = split /[\r\n]+/;

@@ -1,6 +1,7 @@
 
 package plugin;
 
+use POSIX ();
 use HTTP::Request;
 use LWP::UserAgent;
 use Digest::MD5 qw(md5_hex);
@@ -27,9 +28,8 @@ sub http_request {
 	my $this = shift;
 	my $url = shift;
 
-	print "http_request: $url..."; # if $main::debug;
+	print "http_request: $url..." if $main::debug;
     my $res = $ua->request(HTTP::Request->new(GET => $url));
-	print "DONE\n";
 	return $res;
 }
 
@@ -41,6 +41,18 @@ sub fetch_url {
 	if ($res->is_success) {
 		return $res->content;
 	}
+
+	warn sprintf("HTTP[%s]: %s\n", $url, $res->message);
+
+	return undef;
+}
+
+sub strftime {
+	my $this = shift;
+	my $fmt = shift;
+	my $t = $_[0] ? shift : time;
+
+	my $date = POSIX::strftime($fmt, localtime($t));
 }
 
 sub add_comic {

@@ -13,32 +13,21 @@ my $baseurl = "http://www.postimees.ee";
 sub get_url {
 	my $this = shift;
 
-	local $_ = $this->fetch_url($baseurl) or return;
-	my ($url, $last);
-
-	@_ = split /[\r\n]+/;
-	while (defined($_ = shift(@_))) {
-		$last = $_, next unless m#<font color=\S+>Koomiks</font></a>#;
-		
-		return unless $last =~ m#<a\s+href="(.+?)".*>#i;
-		$url = "$baseurl/$1";
-		last;
-	}
-
-	return unless $url;
-
-	local $_ = $this->fetch_url($url) or return;
+	my $a = sprintf("%s/%s/meelelahutus/koomiks/index.php", $baseurl, $this->strftime("%d%m%y"));
+	local $_ = $this->fetch_url($a) or return;
 
 	@_ = split /\n+/;
+	my ($url, $desc);
 	while (defined($_ = shift(@_))) {
-		next unless m#<font color="[A-Z0-9]{6}"><b>.*</b></font>#;
-		my ($u, $d);
-		foreach (split(/\cM/, $_)) {
-			$d = $1,next if /(?:<font color="\S+"><b>|<br>)([^<]+)$/i;
-			$u = $1 if /<img.+?src="(.+?)".*>/i;
-			if ($u) {
-				$this->add_comic($u, $d);
-			}
+		if (m#<a href="/\d+/koomiks\.php.*?" class="TextRedBig"><b>(.*?)</b></a>#) {
+			$desc = $1;
+		}
+
+		if (m#<img src="(/\d+/gfx/[\da-f]+\.jpg)" width="\d+" height="\d+">#) {
+			$url = $1;
+
+			$this->add_comic("$baseurl$url", $desc);
+			undef $url; undef $desc;
 		}
 	}
 }
