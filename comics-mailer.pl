@@ -16,19 +16,7 @@ $p->fetch_data;
 $p->compose_mail;
 
 my @attach = qw(
-	glen@dragon.delfi.ee
-	orc@infoweb.ee
-	garryq@delfi.ee
-	mait.tafenau@delfi.ee
-	aiq@jofo.ee
-	ilmars@delfi.ee
-	pardla@delfi.ee
-	restless.dead@mail.ee
-	Andres.Kullaste@riigikogu.ee
-	dustin@online.ee
-	carter@delfi.ee
-	darkangel@solo.delfi.ee
-	alar.kuuda@microlink.ee
+	comics@lists.delfi.ee
 );
 
 # MBOX full mega.blond@mail.ee
