@@ -19,11 +19,5 @@ my @attach = qw(
 	comics@lists.delfi.ee
 );
 
-# MBOX full mega.blond@mail.ee
-
-my @links = (
-	'glen@delfi.ee'
-);
-
-
+#$p->dump;
 $p->mail_attach(@attach);
