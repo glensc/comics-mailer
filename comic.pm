@@ -43,7 +43,7 @@ sub compose_mail {
 	my $entity = build MIME::Entity
 		'Subject'			=> 'DAILY: comics at estonian web',
 		'Reply-To'			=> 'glen@delfi.ee',
-		'List-Unsubscribe:'	=> '<mailto:glen-comics@delfi.ee?subject=unsub>',
+		'List-Unsubscribe:'	=> '<mailto:glen@delfi.ee?subject=unsub-comics>',
 		'Type'				=> 'multipart/related';
 
 
@@ -53,12 +53,12 @@ sub compose_mail {
 	<head>
 	<meta name="qrichtext" content="1" />
 	<style>
-	body { background-color: white; }
-	img { border: 1px outset black; width: 574px; display: block; }
 	b { color: #79965f; font-size: 11pt; font-family: Verdana, Arial, Helvetica; font-weight: bold; display: block; padding-left: 6px; }
+	blockquote img { border: 1px outset black; display: block; }
+	blockquote { background-color: white; width: 600px; border: 12px solid white; }
 	</style>
 	</head>
-	<body>
+	<body><blockquote>
 	';
 
 	my @data = @{ $this->{data} };
@@ -73,6 +73,7 @@ sub compose_mail {
 	}
 
 	$body .= '
+	</blockquote>
 	</body>
 	</html>
 	';
