@@ -15,9 +15,8 @@ my $p = new comic;
 $p->fetch_data;
 $p->compose_mail;
 
-my @attach = qw(
-	comics@lists.delfi.ee
-);
-
-#$p->dump;
-$p->mail_attach(@attach);
+if (@ARGV) {
+	$p->mail_attach(@ARGV);
+} else {
+	$p->dump;
+}
