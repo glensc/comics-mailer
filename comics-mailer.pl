@@ -2,9 +2,6 @@
 use strict;
 
 use comic;
-use lib 'plugin';
-
-use plugin::epl;
 use plugin::postimees;
 
 our $debug;
