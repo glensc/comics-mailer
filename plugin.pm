@@ -61,6 +61,7 @@ sub add_comic {
 	my $desc = shift;
 
 	my %h = (url => $url, desc => $desc);
+	print "add: url = $url; desc = $desc\n" if $main::debug;
 	$this->{data}{$url} = \%h;
 }
 
@@ -82,7 +83,6 @@ sub fetch_gfx {
 			$p->{content_type} = $content_type;
 			$p->{content_id} = md5_hex($p->{url});
 			$p->{data} = $res->content;
-#			$p->{data} = "DATA HERE";
 			$p->{filename} = $file;
 		} else {
 			warn "Failed to fetch: $p->{url}\n";

@@ -2,6 +2,7 @@
 use strict;
 
 use comic;
+use lib 'plugin';
 use plugin::postimees;
 
 our $debug;

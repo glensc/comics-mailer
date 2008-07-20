@@ -6,28 +6,33 @@ push(@ISA, 'plugin');
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
-
-my $baseurl = "http://www.postimees.ee";
+my $baseurl = 'http://www.postimees.ee';
 
 sub get_url {
 	my $this = shift;
 
-	my $a = sprintf("%s/%s/vabal_ajal/koomiks/index.php", $baseurl, $this->strftime("%d%m%y"));
+	my $a = sprintf("%s/?r=202&d=%s", $baseurl, $this->strftime("%Y%m%d"));
 	local $_ = $this->fetch_url($a) or return;
 
 	@_ = split /\n+/;
 	my ($url, $desc);
+
 	while (defined($_ = shift(@_))) {
-		if (m#class="TextRedBig"><b>(.*?)</b></a>#) {
+		last if /<p class="horoskoop_name">/;
+	}
+
+	while (defined($_ = shift(@_))) {
+		if (m#^\s+(\S.+) <small>\d{2}.\d{2}.\d{4}</small>#) {
 			$desc = $1;
 		}
 
-		if (m#<img src="(/foto/\d+/\d+/[\da-f]+\.\w+)" width="\d+" height="\d+" alt=""> </span>#) {
+		if (m#<img width="\d+" src="(http://f.postimees.ee/s/koomiks/.+)" alt="" border="0" />#) {
 			$url = $1;
-
-			$this->add_comic("$baseurl$url", $desc);
+			$this->add_comic($url, $desc);
 			undef $url; undef $desc;
 		}
+
+		last if m#</div>#;
 	}
 }
 

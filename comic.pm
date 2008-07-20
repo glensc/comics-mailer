@@ -78,7 +78,7 @@ sub compose_mail {
 	</html>
 	';
 
-	$entity->attach(Type => 'text/html', 'Data' => $body);
+	$entity->attach(Type => 'text/html; charset=utf-8', 'Data' => $body);
 
 	# add attachments
 	foreach (@data) {
