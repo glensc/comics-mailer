@@ -1,9 +1,9 @@
-# $Revision: 1.3 $, $Date: 2006/08/31 14:23:14 $
+# $Revision: 1.1 $, $Date: 2008/07/20 08:53:59 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
 Version:	0.1
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -40,4 +40,6 @@ rm -rf $RPM_BUILD_ROOT
 * %{date} RPM Team <rpm@cvs.delfi.ee>
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
-$Log: roke.spec,v $
+$Log: comics-mailer.spec,v $
+Revision 1.1  2008/07/20 08:53:59  glen
+- new
