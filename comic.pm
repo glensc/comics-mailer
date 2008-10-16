@@ -1,13 +1,15 @@
 package comic;
 
 # $Id$
-# Date: 21/11/2002
+# Date: 2002-11-21
 # Author: glen@delfi.ee
 #
 # Fetches from various websites comics and sends them away with email.
 # Can do email with image attachments and just with url to direct resource.
 
 use strict;
+use POSIX qw(strftime);
+use HTTP::Date qw(str2time);
 
 sub new {
 	my $self = shift;
@@ -18,6 +20,15 @@ sub new {
 	bless($this, $class);
 }
 
+sub set_date {
+	my $this= shift;
+	my ($date) = @_;
+	my $t = str2time($date);
+	my $p = strftime('%Y%m%d', localtime($t));
+	die "\`$date' isn't valid timestamp (resolves to $p)" unless $date == $p;
+
+	$this->{utime} = $t;
+}
 
 sub fetch_data {
 	my $this = shift;
@@ -27,6 +38,7 @@ sub fetch_data {
 	my @data;
 	foreach (keys(%plugin::plugins)) {
 		my $p = new $_;
+		$p->set_date($this->{utime}) if $this->{utime};
 		$p->get_url();
 		$p->fetch_gfx();
 		push(@data, $p->get_data());

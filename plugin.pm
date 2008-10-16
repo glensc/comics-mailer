@@ -24,6 +24,13 @@ sub new {
 	return $this;
 }
 
+sub set_date {
+	my $this= shift;
+	my ($t) = @_;
+
+	$this->{utime} = $t;
+}
+
 sub http_request {
 	my $this = shift;
 	my $url = shift;
@@ -50,8 +57,7 @@ sub fetch_url {
 sub strftime {
 	my $this = shift;
 	my $fmt = shift;
-	my $t = $_[0] ? shift : time;
-
+	my $t = $this->{utime} || $time;
 	my $date = POSIX::strftime($fmt, localtime($t));
 }
 
