@@ -1,8 +1,8 @@
-# $Revision: 1.2 $, $Date: 2008/07/20 09:20:27 $
+# $Revision: 1.3 $, $Date: 2008/07/20 09:24:27 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
-Version:	0.9
+Version:	1.1
 Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
@@ -21,6 +21,30 @@ Comics Mailer.
 cd ..
 cvs -d %{_cvsroot} co -d %{name}-%{version} %{_cvsmodule}
 cd -
+
+%build
+# skip tagging if we checkouted from tag or have debug enabled
+# also make make tag only if we have integer release
+%if %{!?debug:1}%{?debug:0} && %{!?_cvstag:1}%{?_cvstag:0} && %([[ %{release} = *.* ]] && echo 0 || echo 1)
+
+# do tagging by version
+tag=%{name}-%(echo %{version} | tr . _)-%(echo %{release} | tr . _)
+
+cd %{_specdir}
+# break if spec is not commited
+if [ "$(cvs status %{name}.spec | awk '/Status:/{print $NF}')" != "Up-to-date" ]; then
+	: "%{name}.spec is not up-to-date with CVS"
+	exit 1
+fi
+
+if [ $(cvs status -v %{name}.spec | egrep -c "$tag[[:space:]]") != 0 ]; then
+	: "Tag $tag already exists"
+	exit 1
+fi
+cvs tag $tag %{name}.spec
+cd -
+cvs tag $tag
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -42,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.3  2008/07/20 09:24:27  glen
+- noarch
+
 Revision 1.2  2008/07/20 09:20:27  glen
 - works with new site
 
