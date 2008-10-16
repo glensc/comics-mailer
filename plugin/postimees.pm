@@ -18,12 +18,13 @@ sub get_url {
 	my ($url, $desc);
 
 	while (defined($_ = shift(@_))) {
-		last if /<p class="horoskoop_name">/;
+		last if /<div class="koomiks_link_vasak">/;
 	}
 
 	while (defined($_ = shift(@_))) {
-		if (m#^\s+(\S.+) <small>\d{2}.\d{2}.\d{4}</small>#) {
+		if (m#<a href="\?r=202[^"]+">(\S.+)</a>#) {
 			$desc = $1;
+			next;
 		}
 
 		if (m#<img width="\d+" src="(http://f.postimees.ee/s/koomiks/.+)" alt="" border="0" />#) {
@@ -32,7 +33,7 @@ sub get_url {
 			undef $url; undef $desc;
 		}
 
-		last if m#</div>#;
+		last if m#<div class="koomiks_link_vasak">#;
 	}
 }
 
