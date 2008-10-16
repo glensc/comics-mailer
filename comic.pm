@@ -35,10 +35,13 @@ sub fetch_data {
 
 	$this->{debug} = 1 if -t STDERR;
 
+	# set fetch time
+	$this->{utime} = time() unless $this->{utime};
+
 	my @data;
 	foreach (keys(%plugin::plugins)) {
 		my $p = new $_;
-		$p->set_date($this->{utime}) if $this->{utime};
+		$p->set_date($this->{utime});
 		$p->get_url();
 		$p->fetch_gfx();
 		push(@data, $p->get_data());
@@ -52,8 +55,9 @@ sub compose_mail {
 
 	# make html part
 	use MIME::Entity;
+	my $t = strftime('%B %d, %Y', localtime($this->{utime}));
 	my $entity = build MIME::Entity
-		'Subject'			=> 'DAILY: comics at estonian web',
+		'Subject'			=> "DAILY: comics at estonian web ($t)",
 		'Reply-To'			=> 'glen@delfi.ee',
 		'List-Unsubscribe:'	=> '<mailto:glen@delfi.ee?subject=unsub-comics>',
 		'Type'				=> 'multipart/related';
@@ -133,7 +137,7 @@ sub dump {
 	my $this = shift;
 	my $ent = $this->{attach};
 
-	print $ent->head->header_hashref;
+	print $ent->head->as_string;
 	print $ent->stringify_body;
 }
 
