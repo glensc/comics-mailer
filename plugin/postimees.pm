@@ -27,7 +27,7 @@ sub get_url {
 			next;
 		}
 
-		if (m#<img width="\d+" src="(http://f.postimees.ee/s/koomiks/.+)" alt="" border="0" />#) {
+		if (m#<img.*? src="(http://f.postimees.ee/s/koomiks/.+)".*?/>#) {
 			$url = $1;
 			$this->add_comic($url, $desc);
 			undef $url; undef $desc;
