@@ -1,8 +1,8 @@
-# $Revision: 1.5 $, $Date: 2008/10/16 12:24:02 $
+# $Revision: 1.6 $, $Date: 2008/11/04 10:37:32 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
-Version:	1.3
+Version:	1.4
 Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
@@ -70,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.6  2008/11/04 10:37:32  glen
+- match postimees.ee site changes
+
 Revision 1.5  2008/10/16 12:24:02  glen
 - v1.2: include date in subject
 
