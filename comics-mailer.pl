@@ -4,11 +4,12 @@ use strict;
 use comic;
 use lib 'plugin';
 use plugin::postimees;
+use plugin::cyanide;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;
 
-my $p = new comic;
+my $p = new comic();
 
 $p->set_date($date) if $date;
 
