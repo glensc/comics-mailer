@@ -18,7 +18,9 @@ sub get_url {
     $root->parse($content);
 
 	my $p = $root->look_down( _tag => 'img', alt => 'Cyanide and Happiness, a daily webcomic');
-	$this->add_comic($p->attr('src'), $p->attr('alt'));
+	if ($p) {
+		$this->add_comic($p->attr('src'), $p->attr('alt'));
+	}
 }
 
 1;
