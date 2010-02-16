@@ -13,9 +13,9 @@ my $baseurl = "http://www.explosm.net/comics/";
 sub get_url {
 	my $this = shift;
 
-    my $content = $this->fetch_url($baseurl) or return;
-    my $root = new HTML::TreeBuilder;
-    $root->parse($content);
+	my $content = $this->fetch_url($baseurl) or return;
+	my $root = new HTML::TreeBuilder;
+	$root->parse($content);
 
 	my $p = $root->look_down( _tag => 'img', alt => 'Cyanide and Happiness, a daily webcomic');
 	if ($p) {

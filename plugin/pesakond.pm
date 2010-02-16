@@ -6,9 +6,7 @@ push(@ISA, 'plugin');
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
-
 my $url = 'http://www.jippii.ee/ee/fun/pesakond/';
-
 
 sub get_url {
 	my $this = shift;

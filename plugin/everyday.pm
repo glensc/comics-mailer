@@ -6,10 +6,8 @@ push(@ISA, 'plugin');
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
-
 my $cookie = 'wmp4UjtydGxQoF54dfun';
 my $url = 'http://www.comics.ee.everyday.com';
-
 
 sub get_url {
 	my $this = shift;
