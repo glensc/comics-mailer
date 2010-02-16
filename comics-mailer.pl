@@ -5,6 +5,7 @@ use comic;
 use lib 'plugin';
 use plugin::postimees;
 use plugin::cyanide;
+use plugin::xkcd;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;
