@@ -1,8 +1,8 @@
-# $Revision: 1.7 $, $Date: 2009/09/11 18:54:48 $
+# $Revision: 1.8 $, $Date: 2010-01-15 15:01:30 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
-Version:	1.4.1
+Version:	1.4.2
 Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
@@ -70,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.8  2010-01-15 15:01:30  glen
+- cyanide swf fix
+
 Revision 1.7  2009/09/11 18:54:48  glen
 - v1.4: add cyanide & happyness
 
