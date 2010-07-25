@@ -1,14 +1,21 @@
-# $Revision: 1.8 $, $Date: 2010-01-15 15:01:30 $
+# $Revision: 1.9 $, $Date: 2010-02-16 11:17:09 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
-Version:	1.4.2
+Version:	1.4.3
 Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# This macro defines when release rules must be applied, i.e integer build
+%if %{!?debug:1}%{?debug:0} && %{!?_cvstag:1}%{?_cvstag:0} && %([[ %{release} = *.* ]] && echo 0 || echo 1)
+%define		with_release	1
+%else
+%undefine	with_release
+%endif
 
 %define		_cvsroot	:ext:glen.alkohol.ee/home/glen/CVSROOT
 %define		_cvsmodule	comics
@@ -18,7 +25,7 @@ Comics Mailer.
 
 %prep
 # check early if build is ok to be performed
-%if %{!?debug:1}%{?debug:0} && %{!?_cvstag:1}%{?_cvstag:0} && %([[ %{release} = *.* ]] && echo 0 || echo 1)
+%if %{with release}
 # break if spec is not commited
 cd %{_specdir}
 if [ "$(cvs status %{name}.spec | awk '/Status:/{print $NF}')" != "Up-to-date" ]; then
@@ -27,7 +34,7 @@ if [ "$(cvs status %{name}.spec | awk '/Status:/{print $NF}')" != "Up-to-date" ]
 fi
 cd -
 %endif
-%setup -qTc
+%setup -qcT
 cd ..
 cvs -d %{_cvsroot} co -d %{name}-%{version} %{_cvsmodule}
 cd -
@@ -35,8 +42,7 @@ cd -
 %build
 # skip tagging if we checkouted from tag or have debug enabled
 # also make make tag only if we have integer release
-%if %{!?debug:1}%{?debug:0} && %{!?_cvstag:1}%{?_cvstag:0} && %([[ %{release} = *.* ]] && echo 0 || echo 1)
-
+%if %{with release}
 # do tagging by version
 tag=%{name}-%(echo %{version} | tr . _)-%(echo %{release} | tr . _)
 
@@ -53,8 +59,10 @@ cvs tag $tag
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{perl_vendorlib}}
-install main.pl $RPM_BUILD_ROOT%{_bindir}/%{name}
+install -p main.pl $RPM_BUILD_ROOT%{_bindir}/%{name}
 cp -a *.pm plugin $RPM_BUILD_ROOT%{perl_vendorlib}
+rm -rf $RPM_BUILD_ROOT%{perl_vendorlib}/CVS
+rm -rf $RPM_BUILD_ROOT%{perl_vendorlib}/plugin/CVS
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -70,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.9  2010-02-16 11:17:09  glen
+- v1.4.2: add xkcd.com on Toomas Laasik suggestion
+
 Revision 1.8  2010-01-15 15:01:30  glen
 - cyanide swf fix
 
