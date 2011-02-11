@@ -10,6 +10,7 @@ package comic;
 use strict;
 use POSIX qw(strftime);
 use HTTP::Date qw(str2time);
+use HTML::Entities;
 
 sub new {
 	my $self = shift;
@@ -28,6 +29,24 @@ sub set_date {
 	die "\`$date' isn't valid timestamp (resolves to $p)" unless $date == $p;
 
 	$this->{utime} = $t;
+}
+
+=cut
+encode $value safe to be used in html attribute.
+
+encoded are:
+'&' (ampersand)
+'"' (double quote)
+''' (single quote)
+'<' (less than)
+'>' (greater than)
+=cut
+sub hsc {
+	my ($this, $value) = @_;
+	warn "HSC[$this][$value]\n";
+	my $res = encode_entities($value, q/<>&"'/);
+	warn "HSC->[$res]\n";
+	return $res;
 }
 
 sub fetch_data {
@@ -84,7 +103,7 @@ sub compose_mail {
 			printf "cid: %s\n", $h{content_id} if $main::debug;
 			next unless $h{content_id};
 			$body .= sprintf("<b><div>%s</div></b><img alt=\"%s\" src=\"cid:%s\">\n",
-				$h{desc}, $h{desc}, $h{content_id});
+				$this->hsc($h{desc}), $this->hsc($h{desc}), $h{content_id});
 		}
 	}
 
