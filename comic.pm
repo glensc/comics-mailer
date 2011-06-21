@@ -43,9 +43,7 @@ encoded are:
 =cut
 sub hsc {
 	my ($this, $value) = @_;
-	warn "HSC[$this][$value]\n";
 	my $res = encode_entities($value, q/<>&"'/);
-	warn "HSC->[$res]\n";
 	return $res;
 }
 
