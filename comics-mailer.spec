@@ -1,8 +1,8 @@
-# $Revision: 1.9 $, $Date: 2010-02-16 11:17:09 $
+# $Revision: 1.10 $, $Date: 2010-07-25 09:24:04 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
-Version:	1.4.3
+Version:	1.4.4
 Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
@@ -78,6 +78,10 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.10  2010-07-25 09:24:04  glen
+- include link to original image in emails
+- version 1.4.3
+
 Revision 1.9  2010-02-16 11:17:09  glen
 - v1.4.2: add xkcd.com on Toomas Laasik suggestion
 
