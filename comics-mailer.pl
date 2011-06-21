@@ -6,6 +6,7 @@ use lib 'plugin';
 use plugin::postimees;
 use plugin::cyanide;
 use plugin::xkcd;
+use plugin::simonscat;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;
