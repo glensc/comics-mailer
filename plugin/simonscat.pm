@@ -20,7 +20,6 @@ sub get_url {
 
 	$p = $root->look_down( _tag => 'div', class => 'storylst-body') or return;
 	$a = $p->find('a') or return;
-	print $a->attr('href');
 
 	$content = $this->fetch_url($a->attr('href')) or return;
 	$root = new HTML::TreeBuilder;
