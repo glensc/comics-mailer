@@ -62,12 +62,11 @@ sub strftime {
 }
 
 sub add_comic {
-	my $this = shift;
-	my $url = shift;
-	my $desc = shift;
+	my ($this, $url, $title, $link) = @_;
+	$link ||= '';
 
-	my %h = (url => $url, desc => $desc);
-	print "add: url = $url; desc = $desc\n" if $main::debug;
+	my %h = (url => $url, desc => $title, link => $link);
+	print "add: url = $url; desc = $title, link = $link\n" if $main::debug;
 	$this->{data}{$url} = \%h;
 }
 
