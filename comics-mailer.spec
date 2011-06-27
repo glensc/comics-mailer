@@ -1,8 +1,8 @@
-# $Revision: 1.10 $, $Date: 2010-07-25 09:24:04 $
+# $Revision: 1.11 $, $Date: 2011-06-21 06:37:00 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
-Version:	1.4.4
+Version:	1.4.5
 Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
@@ -78,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.11  2011-06-21 06:37:00  glen
+- add simons cat
+
 Revision 1.10  2010-07-25 09:24:04  glen
 - include link to original image in emails
 - version 1.4.3
