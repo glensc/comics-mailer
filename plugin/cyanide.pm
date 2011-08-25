@@ -2,9 +2,10 @@
 package plugin::cyanide;
 
 use HTML::TreeBuilder;
+use strict;
 
-use plugin;
-push(@ISA, 'plugin');
+use base 'plugin';
+
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
@@ -18,8 +19,16 @@ sub get_url {
 	$root->parse($content);
 
 	my $p = $root->look_down( _tag => 'img', alt => 'Cyanide and Happiness, a daily webcomic');
+	my $l = $root->look_down(
+		_tag => 'font',
+		size => '-2',
+		sub { $_[0]->as_text =~ /^\[URL=.+\]$/ }
+	);
+	$l && $l->as_text =~ /^\[URL="(.+?)"\]/;
+	$l = $1 || '';
+
 	if ($p) {
-		$this->add_comic($p->attr('src'), $p->attr('alt'));
+		$this->add_comic($p->attr('src'), $p->attr('alt'), $l);
 	}
 }
 
