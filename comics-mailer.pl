@@ -2,7 +2,7 @@
 use strict;
 
 use comic;
-use lib 'plugin';
+use lib '.';
 use plugin::postimees;
 use plugin::cyanide;
 use plugin::xkcd;
