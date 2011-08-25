@@ -1,11 +1,11 @@
 #!/usr/bin/perl
 package plugin::epl;
 
-use plugin;
-push(@ISA, 'plugin');
+use strict;
+use base 'plugin';
+
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
-
 
 my $baseurl = "http://www.epl.ee/koomiks.php";
 

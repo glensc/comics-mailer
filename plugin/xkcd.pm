@@ -1,10 +1,10 @@
 #!/usr/bin/perl
 package plugin::xkcd;
 
+use strict;
+use base 'plugin';
 use HTML::TreeBuilder;
 
-use plugin;
-push(@ISA, 'plugin');
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 

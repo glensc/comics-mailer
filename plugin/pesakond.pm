@@ -1,10 +1,10 @@
 #!/usr/bin/perl
 package plugin::pesakond;
 
-use plugin;
+use strict;
+use base 'plugin';
 use JSON;
 
-push(@ISA, 'plugin');
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 

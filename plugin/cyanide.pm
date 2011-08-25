@@ -1,10 +1,9 @@
 #!/usr/bin/perl
 package plugin::cyanide;
 
-use HTML::TreeBuilder;
 use strict;
-
 use base 'plugin';
+use HTML::TreeBuilder;
 
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;

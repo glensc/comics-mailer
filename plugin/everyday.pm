@@ -1,8 +1,9 @@
 #!/usr/bin/perl
 package plugin::everyday;
 
-use plugin;
-push(@ISA, 'plugin');
+use strict;
+use base 'plugin';
+
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
