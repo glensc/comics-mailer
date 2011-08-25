@@ -17,12 +17,18 @@ sub get_url {
 	my $root = new HTML::TreeBuilder;
 	$root->parse($content);
 
-	my $p = $root->look_down(_tag => 'div', id => 'contentContainer') or return;
-	$p = $p->look_down(_tag => 'div', class => 's') or return;
+	my $c = $root->look_down(_tag => 'div', id => 'contentContainer') or return;
+	my $l = $c->look_down(
+		_tag => 'h3',
+		sub { $_[0]->as_text =~ /Permanent link to this comic: / }
+	);
+	($l = $l->as_text) =~ s/Permanent link to this comic: //;
+
+	my $p = $c->look_down(_tag => 'div', class => 's') or return;
 	$p = $p->find('img') or return;
 
 	if ($p) {
-		$this->add_comic($p->attr('src'), $p->attr('alt').': '.$p->attr('title'));
+		$this->add_comic($p->attr('src'), $p->attr('alt').': '.$p->attr('title'), $l);
 	}
 }
 
