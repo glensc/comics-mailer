@@ -1,9 +1,9 @@
-# $Revision: 1.12 $, $Date: 2011-06-27 22:47:34 $
+# $Revision: 1.13 $, $Date: 2011-07-03 21:02:46 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
 Version:	1.4.5
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -18,7 +18,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %endif
 
 %define		_cvsroot	:ext:glen.alkohol.ee/home/glen/CVSROOT
-%define		_cvsmodule	comics
+%define		_cvsmodule	comics-mailer
 
 %description
 Comics Mailer.
@@ -78,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.13  2011-07-03 21:02:46  glen
+- add link to simon's cat
+
 Revision 1.12  2011-06-27 22:47:34  glen
 - add wulffmorgenthaler
 
