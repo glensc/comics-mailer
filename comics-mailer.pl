@@ -1,8 +1,8 @@
 #!/usr/bin/perl -ws
 use strict;
 
-use comic;
 use lib '.';
+use comic;
 use plugin::postimees;
 use plugin::cyanide;
 use plugin::xkcd;
