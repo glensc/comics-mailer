@@ -100,7 +100,7 @@ sub compose_mail {
 			my %h = %$_;
 			printf "cid: %s\n", $h{content_id} if $main::debug;
 			next unless $h{content_id};
-			$body .= sprintf("<b><div>%s</div></b>", $this->hsc($h{desc}));
+			$body .= sprintf("<br /><b><div>%s</div></b>", $this->hsc($h{desc}));
 			if ($h{link}) {
 				$body .= sprintf("<a href=\"%s\"><img alt=\"%s\" src=\"cid:%s\"></a>\n",
 					$h{link}, $this->hsc($h{desc}), $h{content_id});
