@@ -1,9 +1,9 @@
-# $Revision: 1.14 $, $Date: 2011-08-25 14:03:46 $
+# $Revision: 1.15 $, $Date: 2011-10-31 10:06:57 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
 Version:	1.4.5
-Release:	4
+Release:	5
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -78,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.15  2011-10-31 10:06:57  glen
+- newline between comits
+
 Revision 1.14  2011-08-25 14:03:46  glen
 - rel 3, more permalinks to comics
 
