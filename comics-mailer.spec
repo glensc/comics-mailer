@@ -1,4 +1,4 @@
-# $Revision: 1.15 $, $Date: 2011-10-31 10:06:57 $
+# $Revision: 1.16 $, $Date: 2011-11-14 18:16:23 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
@@ -59,7 +59,7 @@ cvs tag $tag
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{perl_vendorlib}}
-install -p main.pl $RPM_BUILD_ROOT%{_bindir}/%{name}
+install -p %{name}.pl $RPM_BUILD_ROOT%{_bindir}/%{name}
 cp -a *.pm plugin $RPM_BUILD_ROOT%{perl_vendorlib}
 rm -rf $RPM_BUILD_ROOT%{perl_vendorlib}/CVS
 rm -rf $RPM_BUILD_ROOT%{perl_vendorlib}/plugin/CVS
@@ -78,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.16  2011-11-14 18:16:23  glen
+- pm site changes
+
 Revision 1.15  2011-10-31 10:06:57  glen
 - newline between comits
 
