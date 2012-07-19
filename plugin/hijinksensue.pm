@@ -27,10 +27,17 @@ sub get_url {
 
 	my $title = $root->look_down( _tag => 'h2', class => 'post-title') or return;
 	my $url = $title->look_down(_tag => 'a') or return;
+	$title = $title->as_text;
+
 	my $img = $root->look_down(_tag => 'div', id => 'comic') or return;
 	$img = $img->look_down(_tag => 'img');
 
-	$this->add_comic($img->attr('src'), $title->as_text, $url->attr('href'));
+	my $alt = $img->attr('alt');
+	if ($alt and $alt ne $title) {
+		$title .= ' -- ' . $alt;
+	}
+
+	$this->add_comic($img->attr('src'), $title, $url->attr('href'));
 }
 
 1;
