@@ -1,5 +1,6 @@
-#!/usr/bin/perl -ws
+#!/usr/bin/perl -s
 use strict;
+use warnings;
 
 use lib '.';
 use comic;
