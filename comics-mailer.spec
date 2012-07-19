@@ -1,9 +1,9 @@
-# $Revision: 1.17 $, $Date: 2011-11-19 12:22:55 $
+# $Revision: 1.18 $, $Date: 2012-07-19 07:16:37 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
 Version:	1.4.6
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -78,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.18  2012-07-19 07:16:37  glen
+- 1.4.6: add HijiNKS Ensue comic
+
 Revision 1.17  2011-11-19 12:22:55  glen
 - update bin path
 
