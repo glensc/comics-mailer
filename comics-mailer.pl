@@ -14,7 +14,7 @@ use plugin::hijinksensue;
 our ($debug, $date);
 $debug = 1 if -t STDIN;
 
-my $p = new comic();
+my $p = comic->new();
 
 $p->set_date($date) if $date;
 

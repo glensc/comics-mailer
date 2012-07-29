@@ -73,12 +73,12 @@ sub compose_mail {
 	# make html part
 	use MIME::Entity;
 	my $t = strftime('%B %d, %Y', localtime($this->{utime}));
-	my $entity = build MIME::Entity
+	my $entity = MIME::Entity->build(
 		'Subject'			=> "DAILY: comics at estonian web ($t)",
 		'Reply-To'			=> 'glen@delfi.ee',
 		'List-Unsubscribe:'	=> '<mailto:glen@delfi.ee?subject=unsub-comics>',
-		'Type'				=> 'multipart/related';
-
+		'Type'				=> 'multipart/related',
+	);
 
 	my $body = '
 	<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
@@ -149,7 +149,7 @@ sub mailer {
 	my $body = $ent->stringify_body;
 	foreach (@recip) {
 		$$hdr{To} = $_;
-		my $msg = new Mail::Mailer;
+		my $msg = Mail::Mailer->new;
 		my $fh = $msg->open($hdr);
 		print $fh $body;
 		$fh->close;

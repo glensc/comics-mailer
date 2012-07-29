@@ -1,5 +1,7 @@
 
 package plugin;
+use strict;
+use warnings;
 
 use POSIX ();
 use HTTP::Request;
@@ -25,15 +27,13 @@ sub new {
 }
 
 sub set_date {
-	my $this= shift;
-	my ($t) = @_;
+	my ($this, $t) = @_;
 
 	$this->{utime} = $t;
 }
 
 sub http_request {
-	my $this = shift;
-	my $url = shift;
+	my ($this, $url) = @_;
 
 	print "http_request: $url...\n" if $main::debug;
     my $res = $ua->request(HTTP::Request->new(GET => $url));
@@ -41,8 +41,7 @@ sub http_request {
 }
 
 sub fetch_url {
-	my $this = shift;
-	my $url = shift;
+	my ($this, $url) = @_;
 
 	my $res = $this->http_request($url);
 	if ($res->is_success) {
@@ -55,9 +54,8 @@ sub fetch_url {
 }
 
 sub strftime {
-	my $this = shift;
-	my $fmt = shift;
-	my $t = $this->{utime} || $time;
+	my ($this, $fmt) = @_;
+	my $t = $this->{utime};
 	my $date = POSIX::strftime($fmt, localtime($t));
 }
 
@@ -71,32 +69,33 @@ sub add_comic {
 }
 
 sub fetch_gfx {
-	my $this = shift;
+	my ($this) = @_;
 
 	foreach (keys %{ $this->{data} }) {
 		my $p = $this->{data}{$_};
 		my $res = $this->http_request($p->{url});
-		if ($res->is_success) {
-			$content_type = $res->header('Content-type');
-			$file = $p->{url};
-			if ($file =~ m#([^/?=]+?)$#) {
-				$file = $1;
-				if ($file !~ /\./ && $content_type =~ m#/(.*)$#) {
-					$file .= ".$1";
-				}
-			}
-			$p->{content_type} = $content_type;
-			$p->{content_id} = md5_hex($p->{url});
-			$p->{data} = $res->content;
-			$p->{filename} = $file;
-		} else {
+		if (!$res->is_success) {
 			warn "Failed to fetch: $p->{url}\n";
+			next;
 		}
+
+		my $content_type = $res->header('Content-type');
+		my $file = $p->{url};
+		if ($file =~ m#([^/?=]+?)$#) {
+			$file = $1;
+			if ($file !~ /\./ && $content_type =~ m#/(.*)$#) {
+				$file .= ".$1";
+			}
+		}
+		$p->{content_type} = $content_type;
+		$p->{content_id} = md5_hex($p->{url});
+		$p->{data} = $res->content;
+		$p->{filename} = $file;
 	}
 }
 
 sub get_data {
-	my $this = shift;
+	my ($this) = @_;
 
 	return $this->{data};
 }
