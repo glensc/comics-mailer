@@ -1,7 +1,7 @@
-#!/usr/bin/perl
 package plugin::epl;
 
 use strict;
+use warnings;
 use base 'plugin';
 
 my $package = __PACKAGE__;

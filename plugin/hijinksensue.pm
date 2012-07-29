@@ -1,4 +1,3 @@
-#!/usr/bin/perl
 package plugin::hijinksensue;
 
 # HijiNKS Ensue
@@ -9,6 +8,7 @@ package plugin::hijinksensue;
 # here.
 
 use strict;
+use warnings;
 use base 'plugin';
 use HTML::TreeBuilder;
 

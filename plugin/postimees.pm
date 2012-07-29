@@ -1,7 +1,7 @@
-#!/usr/bin/perl
 package plugin::postimees;
 
 use strict;
+use warnings;
 use base 'plugin';
 use HTML::TreeBuilder;
 

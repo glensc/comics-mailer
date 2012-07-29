@@ -1,7 +1,7 @@
-#!/usr/bin/perl
 package plugin::simonscat;
 
 use strict;
+use warnings;
 use base 'plugin';
 use HTML::TreeBuilder;
 

@@ -1,7 +1,7 @@
-#!/usr/bin/perl
 package plugin::pesakond;
 
 use strict;
+use warnings;
 use base 'plugin';
 use JSON;
 
