@@ -1,9 +1,9 @@
-# $Revision: 1.18 $, $Date: 2012-07-19 07:16:37 $
+# $Revision: 1.19 $, $Date: 2012-07-19 07:30:37 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
-Version:	1.4.6
-Release:	2
+Version:	1.5
+Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -17,8 +17,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %undefine	with_release
 %endif
 
-%define		_cvsroot	:ext:glen.alkohol.ee/home/glen/CVSROOT
-%define		_cvsmodule	comics-mailer
+%define		_gitroot	git@github.com:glensc/comics-mailer.git
 
 %description
 Comics Mailer.
@@ -36,7 +35,7 @@ cd -
 %endif
 %setup -qcT
 cd ..
-cvs -d %{_cvsroot} co -d %{name}-%{version} %{_cvsmodule}
+git clone  %{_gitroot} %{name}-%{version}
 cd -
 
 %build
@@ -53,7 +52,8 @@ if [ $(cvs status -v %{name}.spec | egrep -c "$tag[[:space:]]") != 0 ]; then
 fi
 cvs tag $tag %{name}.spec
 cd -
-cvs tag $tag
+git tag $tag
+git push origin $tag
 %endif
 
 %install
@@ -78,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.19  2012-07-19 07:30:37  glen
+- hijinksensue: add also alt if different from title
+
 Revision 1.18  2012-07-19 07:16:37  glen
 - 1.4.6: add HijiNKS Ensue comic
 
