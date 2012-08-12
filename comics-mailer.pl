@@ -11,6 +11,7 @@ use plugin::xkcd;
 use plugin::simonscat;
 use plugin::wulffmorgenthaler;
 use plugin::geekandpoke;
+use plugin::garfield;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;
@@ -28,6 +29,4 @@ $p->compose_mail;
 
 if (@ARGV) {
 	$p->mail_attach(@ARGV);
-} else {
-	$p->dump;
 }
