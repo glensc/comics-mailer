@@ -18,7 +18,7 @@ sub get_url {
 	$root = new HTML::TreeBuilder;
 	$root->parse($content);
 
-	$p = $root->look_down( _tag => 'div', class => 'storylst-body') or return;
+	$p = $root->look_down( _tag => 'div', class => 'storylst-body') or die("Can't find div.storylst-body");
 	$a = $p->find('a') or return;
 	$url = $a->attr('href') or return;
 

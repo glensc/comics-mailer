@@ -94,9 +94,14 @@ sub fetch_data {
 		$p->set_date($this->{utime});
 		$p->set_history($history);
 		$p->set_http_cache($http_cache);
-		$p->get_url();
-		$p->fetch_gfx();
-		push(@data, $p->get_data());
+
+		# use eval, to allow plugins to die
+		eval {
+			$p->get_url();
+			$p->fetch_gfx();
+			push(@data, $p->get_data());
+		};
+		warn "[$_]: $@" if $@;
 	}
 
 	$this->{data} = \@data;
