@@ -10,6 +10,7 @@ use plugin::cyanide;
 use plugin::xkcd;
 use plugin::simonscat;
 use plugin::wulffmorgenthaler;
+use plugin::geekandpoke;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;
