@@ -22,7 +22,7 @@ sub get_url {
 	my $this = shift;
 
 	my $content = $this->fetch_url($baseurl) or return;
-	my $root = new HTML::TreeBuilder;
+	my $root = HTML::TreeBuilder->new;
 	$root->parse($content);
 
 	my $title = $root->look_down( _tag => 'h2', class => 'post-title') or return;

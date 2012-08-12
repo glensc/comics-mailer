@@ -16,7 +16,7 @@ sub get_url {
 	my $url = sprintf("%s/?r=202&d=%s", $baseurl, $this->strftime("%Y%m%d"));
 	my $content = $this->fetch_url($url) or return;
 
-	my $root = new HTML::TreeBuilder();
+	my $root = HTML::TreeBuilder->new;
 	$root->parse($content);
 
 	my $c = $root->look_down(_tag => 'div', class => 'sisu_keskmine_paremata') or return;

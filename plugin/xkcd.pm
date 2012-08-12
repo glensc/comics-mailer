@@ -14,7 +14,7 @@ sub get_url {
 	my $this = shift;
 
 	my $content = $this->fetch_url($baseurl) or die("Can't fetch $baseurl");
-	my $root = new HTML::TreeBuilder;
+	my $root = HTML::TreeBuilder->new;
 	$root->parse($content);
 
 	my $c = $root->look_down(_tag => 'div', id => 'comic') or die("Can't find div#comic");
