@@ -13,23 +13,17 @@ my $baseurl = 'http://xkcd.com/';
 sub get_url {
 	my $this = shift;
 
-	my $content = $this->fetch_url($baseurl) or return;
+	my $content = $this->fetch_url($baseurl) or die("Can't fetch $baseurl");
 	my $root = new HTML::TreeBuilder;
 	$root->parse($content);
 
-	my $c = $root->look_down(_tag => 'div', id => 'contentContainer') or return;
-	my $l = $c->look_down(
-		_tag => 'h3',
-		sub { $_[0]->as_text =~ /Permanent link to this comic: / }
-	);
-	($l = $l->as_text) =~ s/Permanent link to this comic: //;
+	my $c = $root->look_down(_tag => 'div', id => 'comic') or die("Can't find div#comic");
+	my $p = $c->find('img');
 
-	my $p = $c->look_down(_tag => 'div', class => 's') or return;
-	$p = $p->find('img') or return;
+	my $m = $root->look_down(_tag => 'div', id => 'middleContainer') or die("Can't find div#middleContainer");
+	my ($l) = $m->as_text =~ m{Permanent link to this comic: (\w+://[^\s]+)};
 
-	if ($p) {
-		$this->add_comic($p->attr('src'), $p->attr('alt').': '.$p->attr('title'), $l);
-	}
+	$this->add_comic($p->attr('src'), $p->attr('alt').': '.$p->attr('title'), $l);
 }
 
-1;
+
