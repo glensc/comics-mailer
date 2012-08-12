@@ -14,21 +14,24 @@ sub get_url {
 	my $this = shift;
 	my ($content, $root, $p, $a, $img, $title, $url);
 
-	$content = $this->fetch_url($baseurl) or return;
-	$root = new HTML::TreeBuilder;
+	$content = $this->fetch_url($baseurl) or die("Can't fetch $url");
+	$root = HTML::TreeBuilder->new(ignore_unknown => 0);
 	$root->parse($content);
 
-	$p = $root->look_down( _tag => 'div', class => 'storylst-body') or die("Can't find div.storylst-body");
-	$a = $p->find('a') or return;
-	$url = $a->attr('href') or return;
+	$p = $root->look_down(_tag => 'div', class => 'article ma-teaser type-news last') or die("Can't find div.article");
+	my $figure = $p->look_down(_tag => 'figure');
+	$a = $figure->find('a');
+	$url = $a->attr('href');
 
-	$content = $this->fetch_url($url) or return;
-	$root = new HTML::TreeBuilder;
+	$content = $this->fetch_url($url) or die("Can't fetch $url");
+	$root = HTML::TreeBuilder->new;
 	$root->parse($content);
 
-	$p = $root->look_down( _tag => 'div', class => 'cartoons') or return;
-	$a = $p->find('a') or return;
-	$img = $p->find('img') or return;
+	# TODO: is this special article or not?
+	# http://www.mirror.co.uk/news/uk-news/video-new-simons-cat-video-940810
+	$p = $root->look_down( _tag => 'div', class => 'cartoons') or die("Can't find div.cartoons");
+	$a = $p->find('a');
+	$img = $p->find('img');
 	($title = $img->attr('title')) =~ s/ - Click the above image to close this window//;
 
 	$this->add_comic($a->attr('href'), $title, $url);
