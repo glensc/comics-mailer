@@ -29,12 +29,10 @@ sub get_url {
 
 	# TODO: is this special article or not?
 	# http://www.mirror.co.uk/news/uk-news/video-new-simons-cat-video-940810
-	$p = $root->look_down( _tag => 'div', class => 'cartoons') or die("Can't find div.cartoons");
-	$a = $p->find('a');
+	$p = $root->look_down(_tag => 'div', class => qr/body/) or die("Can't find div.body");
 	$img = $p->find('img');
-	($title = $img->attr('title')) =~ s/ - Click the above image to close this window//;
 
-	$this->add_comic($a->attr('href'), $title, $url);
+	$this->add_comic($img->attr('src'), $img->attr('alt'), $url);
 }
 
 1;
