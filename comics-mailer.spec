@@ -1,4 +1,4 @@
-# $Revision: 1.19 $, $Date: 2012-07-19 07:30:37 $
+# $Revision: 1.20 $, $Date: 2012-08-12 16:20:22 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
@@ -44,6 +44,7 @@ cd -
 %if %{with release}
 # do tagging by version
 tag=%{name}-%(echo %{version} | tr . _)-%(echo %{release} | tr . _)
+gittag=%{version}-%{release}
 
 cd %{_specdir}
 if [ $(cvs status -v %{name}.spec | egrep -c "$tag[[:space:]]") != 0 ]; then
@@ -52,8 +53,8 @@ if [ $(cvs status -v %{name}.spec | egrep -c "$tag[[:space:]]") != 0 ]; then
 fi
 cvs tag $tag %{name}.spec
 cd -
-git tag $tag
-git push origin $tag
+git tag $gittag
+git push origin $gittag
 %endif
 
 %install
@@ -78,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.20  2012-08-12 16:20:22  glen
+- up to 1.5: comics sent out are remembered, plugins can die with errors
+
 Revision 1.19  2012-07-19 07:30:37  glen
 - hijinksensue: add also alt if different from title
 
