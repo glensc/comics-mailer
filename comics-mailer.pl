@@ -16,6 +16,7 @@ $debug = 1 if -t STDIN;
 my $p = comic->new();
 
 $p->set_date($date) if $date;
+$p->set_history_file('history.ser');
 
 $p->fetch_data;
 $p->compose_mail;

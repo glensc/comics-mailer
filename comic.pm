@@ -31,6 +31,26 @@ sub set_date {
 	$this->{utime} = $t;
 }
 
+sub set_history_file($$) {
+	my ($this, $history_file) = @_;
+	$this->{history_file} = $history_file;
+}
+
+# get history object
+sub get_history($$) {
+	my ($this) = @_;
+
+	# history not configured; just return hash that is not stored on disk
+	unless ($this->{history_file}) {
+		return {};
+	}
+
+	unless ($this->{history}) {
+	   	$this->{history} = persistent->new($this->{history_file});
+	}
+	$this->{history};
+}
+
 =cut
 encode $value safe to be used in html attribute.
 
@@ -54,11 +74,13 @@ sub fetch_data {
 
 	# set fetch time
 	$this->{utime} = time() unless $this->{utime};
+	my $history = $this->get_history;
 
-	my @data;
+	my (@data, $data);
 	foreach (keys(%plugin::plugins)) {
-		my $p = new $_;
+		my $p = $_->new;
 		$p->set_date($this->{utime});
+		$p->set_history($history);
 		$p->get_url();
 		$p->fetch_gfx();
 		push(@data, $p->get_data());

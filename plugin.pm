@@ -8,6 +8,8 @@ use HTTP::Request;
 use LWP::UserAgent;
 use Digest::MD5 qw(md5_hex);
 
+use persistent;
+
 use vars qw(@plugins);
 
 my $ua = LWP::UserAgent->new;
@@ -32,14 +34,33 @@ sub set_date {
 	$this->{utime} = $t;
 }
 
+# set history object
+sub set_history($$) {
+	my ($this, $history) = @_;
+	$this->{history} = $history;
+}
+
+# get history object
+sub get_history($$) {
+	my ($this) = @_;
+	$this->{history};
+}
+
+# fetch $url
+# TODO: fix duplicate with fetch_url
+# uses http.cache for easier developing purposes
 sub http_request {
 	my ($this, $url) = @_;
 
+	my $http_cache = new persistent("http.cache");
 	print "http_request: $url...\n" if $main::debug;
-    my $res = $ua->request(HTTP::Request->new(GET => $url));
+    my $res = $http_cache->{$url} || $ua->request(HTTP::Request->new(GET => $url));
+	$http_cache->{$url} = $res;
 	return $res;
 }
 
+# fetch $url.
+# also checks for response success
 sub fetch_url {
 	my ($this, $url) = @_;
 
@@ -63,9 +84,28 @@ sub add_comic {
 	my ($this, $url, $title, $link) = @_;
 	$link ||= '';
 
-	my %h = (url => $url, desc => $title, link => $link);
+	my $history = $this->get_history;
+
+	if ($history->{$url}) {
+		print "skip (already exists (at ($history->{$url})): url = $url; desc = $title, link = $link\n" if $main::debug;
+		return;
+	}
+	# store in history
+	$history->{$url} = $this->{utime};
+
 	print "add: url = $url; desc = $title, link = $link\n" if $main::debug;
-	$this->{data}{$url} = \%h;
+	$this->{data}{$url} = {url => $url, desc => $title, link => $link};
+}
+
+# returns true if comic already exists in permanent db
+sub exists {
+	my ($this, $p) = @_;
+
+	return 0 unless $this->{persistent};
+
+	return 1 if exists $this->{persistent}{$p->{url}};
+
+	return 0;
 }
 
 sub fetch_gfx {
@@ -98,6 +138,12 @@ sub get_data {
 	my ($this) = @_;
 
 	return $this->{data};
+}
+
+sub DESTROY {
+	my $this = shift;
+	# release history reference to avoid circular deps
+	undef($this->{history});
 }
 
 1;
