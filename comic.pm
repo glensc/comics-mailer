@@ -51,6 +51,17 @@ sub get_history($$) {
 	$this->{history};
 }
 
+# set http cache path
+sub set_http_cache($$) {
+	my ($this, $cachefile) = @_;
+	$this->{http_cache} = $cachefile;
+}
+
+sub get_http_cache($$) {
+	my ($this) = @_;
+	$this->{http_cache};
+}
+
 =cut
 encode $value safe to be used in html attribute.
 
@@ -75,12 +86,14 @@ sub fetch_data {
 	# set fetch time
 	$this->{utime} = time() unless $this->{utime};
 	my $history = $this->get_history;
+	my $http_cache = $this->get_http_cache;
 
 	my (@data, $data);
 	foreach (keys(%plugin::plugins)) {
 		my $p = $_->new;
 		$p->set_date($this->{utime});
 		$p->set_history($history);
+		$p->set_http_cache($http_cache);
 		$p->get_url();
 		$p->fetch_gfx();
 		push(@data, $p->get_data());

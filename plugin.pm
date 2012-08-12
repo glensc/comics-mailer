@@ -34,6 +34,20 @@ sub set_date {
 	$this->{utime} = $t;
 }
 
+# set http cache path
+sub set_http_cache($$) {
+	my ($this, $cachefile) = @_;
+	$this->{http_cache} = $cachefile;
+}
+
+sub get_http_cache($$) {
+	my ($this) = @_;
+
+	$this->{http_cache} ?
+		new persistent($this->{http_cache}) :
+		{};
+}
+
 # set history object
 sub set_history($$) {
 	my ($this, $history) = @_;
@@ -52,8 +66,8 @@ sub get_history($$) {
 sub http_request {
 	my ($this, $url) = @_;
 
-	my $http_cache = new persistent("http.cache");
 	print "http_request: $url...\n" if $main::debug;
+	my $http_cache = $this->get_http_cache;
     my $res = $http_cache->{$url} || $ua->request(HTTP::Request->new(GET => $url));
 	$http_cache->{$url} = $res;
 	return $res;
