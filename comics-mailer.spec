@@ -1,9 +1,9 @@
-# $Revision: 1.20 $, $Date: 2012-08-12 16:20:22 $
+# $Revision: 1.21 $, $Date: 2012-08-12 16:37:42 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
 Version:	1.5
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.21  2012-08-12 16:37:42  glen
+- git tag should be plain
+
 Revision 1.20  2012-08-12 16:20:22  glen
 - up to 1.5: comics sent out are remembered, plugins can die with errors
 
