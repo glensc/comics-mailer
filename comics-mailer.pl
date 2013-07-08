@@ -11,6 +11,7 @@ use plugin::xkcd;
 use plugin::simonscat;
 use plugin::wulffmorgenthaler;
 use plugin::geekandpoke;
+use plugin::pandyland;
 use plugin::garfield;
 
 our ($debug, $date);

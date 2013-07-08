@@ -83,7 +83,7 @@ sub fetch_url {
 		return $res->content;
 	}
 
-	warn sprintf("HTTP[%s]: %s\n", $url, $res->message);
+	warn sprintf("HTTP[%s]: %s\n", $url, $res->status_line);
 
 	return undef;
 }
