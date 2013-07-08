@@ -1,7 +1,6 @@
 package plugin::geekandpoke;
 
 # Geek And Poke
-# http://geekandpoke.typepad.com/geekandpoke/
 
 use strict;
 use warnings;
@@ -11,7 +10,7 @@ use HTML::TreeBuilder;
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
-my $baseurl = "http://geekandpoke.typepad.com/geekandpoke/";
+my $baseurl = "http://geek-and-poke.com/";
 
 sub get_url {
 	my $this = shift;
@@ -20,10 +19,10 @@ sub get_url {
 	my $root = HTML::TreeBuilder->new;
 	$root->parse($content);
 
-	my $a = $root->look_down(_tag => 'a', class => 'asset-img-link') or die("Can't find a.asset-img-link");
-	my $img = $a->find('img') or die("Can't find img");
+	my $t = $root->look_down(_tag => 'h1', class => 'entry-title')->find('a');
+	my $c = $root->look_down(_tag => 'div', class => 'image-block-wrapper lightbox')->find('img');
 
-	$this->add_comic($img->attr('src'), $img->attr('title'));
+	$this->add_comic($c->attr('data-image'), $t->as_text, $baseurl);
 }
 
 1;
