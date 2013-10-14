@@ -16,14 +16,9 @@ sub get_url {
 	my $content = $this->fetch_url($baseurl) or return;
 	my $root = HTML::TreeBuilder->new()->parse($content);
 
-	my $url = $root->look_down(_tag => 'meta', property => 'og:url') or return;
+	my $url = $root->look_down(_tag => 'div', class => 'box-content')->find('img');
 
-	my $c = $root->look_down(_tag => 'div', class => 'striben') or return;
-	$c = $c->look_down(_tag => 'div', class => 'purple') or return;
-	$c = $c->look_down(_tag => 'div', class => 'inner') or return;
-	$c = $c->look_down(_tag => 'div', class => 'stribe')->find('img');
-
-	$this->add_comic($baseurl.$c->attr('src'), $c->attr('alt'), $url->attr('content'));
+	$this->add_comic($url->attr('src'), $url->attr('alt'), $baseurl);
 }
 
 1;
