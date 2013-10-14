@@ -20,7 +20,7 @@ sub get_url {
 	$root->parse($content);
 
 	my $t = $root->look_down(_tag => 'h1', class => 'entry-title')->find('a');
-	my $c = $root->look_down(_tag => 'div', class => 'image-block-wrapper lightbox')->find('img');
+	my $c = $root->look_down(_tag => 'div', class => 'image-block-wrapper lightbox ')->find('img');
 
 	$this->add_comic($c->attr('src'), $t->as_text, $baseurl);
 }
