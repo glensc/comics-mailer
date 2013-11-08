@@ -1,9 +1,9 @@
-# $Revision: 1.23 $, $Date: 2013-07-08 06:43:39 $
+# $Revision: 1.24 $, $Date: 2013-10-14 08:21:39 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
 Version:	1.5
-Release:	4
+Release:	5
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.24  2013-10-14 08:21:39  glen
+- rel 4: fixes to wulff, geek&poke, pandyland from zod
+
 Revision 1.23  2013-07-08 06:43:39  glen
 - geek and poke fix; add pandyland
 
