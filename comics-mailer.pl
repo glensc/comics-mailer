@@ -13,6 +13,7 @@ use plugin::wulffmorgenthaler;
 use plugin::geekandpoke;
 use plugin::pandyland;
 use plugin::garfield;
+use plugin::deathbulge;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;
