@@ -19,11 +19,13 @@ sub get_url {
 
 	my $c = $root->look_down(_tag => 'div', id => 'comic') or die("Can't find div#comic");
 	my $p = $c->find('img');
+	my $img = $p->attr('src');
+	if( $img !~ /^(http|HTTP)/ ) { $img='http:'.$img; }
 
 	my $m = $root->look_down(_tag => 'div', id => 'middleContainer') or die("Can't find div#middleContainer");
 	my ($l) = $m->as_text =~ m{Permanent link to this comic: (\w+://[^\s]+)};
 
-	$this->add_comic($p->attr('src'), $p->attr('alt').': '.$p->attr('title'), $l);
+	$this->add_comic($img, $p->attr('alt').': '.$p->attr('title'), $l);
 }
 
 

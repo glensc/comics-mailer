@@ -8,12 +8,13 @@ use comic;
 use plugin::postimees;
 use plugin::cyanide;
 use plugin::xkcd;
-use plugin::simonscat;
+#use plugin::simonscat;
 use plugin::wulffmorgenthaler;
 use plugin::geekandpoke;
 use plugin::pandyland;
 use plugin::garfield;
 use plugin::deathbulge;
+use plugin::depressedalien;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;
