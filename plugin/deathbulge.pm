@@ -3,22 +3,24 @@ package plugin::deathbulge;
 use strict;
 use warnings;
 use base 'plugin';
-use HTML::TreeBuilder;
+use XML::RSS;
 
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
-my $baseurl = "http://www.deathbulge.com";
+my $baseurl = "http://www.deathbulge.com/rss.xml";
 
 sub get_url {
 	my $this = shift;
 	my $content = $this->fetch_url($baseurl) or return;
 
-	my $root = HTML::TreeBuilder->new()->parse($content);
+	my $root = new XML::RSS();
+	$root->parse($content);
 
-	my $c = $root->look_down(_tag => 'div', id => 'comic')->find('img');
+	my $items = $root->{'items'};
 
-	$this->add_comic($baseurl.$c->attr('src'), "deathbulge", $baseurl);
+	my ($img) = @$items[0]->{'description'} =~ m{src="([^\s]+)"};
+	$this->add_comic($img, @$items[0]->{'title'}, @$items[0]->{'link'});
 }
 
 1;
