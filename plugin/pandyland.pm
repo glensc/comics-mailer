@@ -16,7 +16,7 @@ sub get_url {
 
 	my $root = HTML::TreeBuilder->new()->parse($content);
 
-	my $c = $root->look_down(_tag => 'div', class => 'comicpane')->find('img');
+	my $c = $root->look_down(_tag => 'div', id => 'comic')->find('img');
 
 	$this->add_comic($c->attr('src'), $c->attr('alt'), $baseurl);
 }
