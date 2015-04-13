@@ -11,7 +11,7 @@ use plugin::xkcd;
 #use plugin::simonscat;
 use plugin::wulffmorgenthaler;
 use plugin::geekandpoke;
-use plugin::pandyland;
+#use plugin::pandyland;
 use plugin::garfield;
 use plugin::deathbulge;
 use plugin::depressedalien;
