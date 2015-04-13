@@ -1,9 +1,9 @@
-# $Revision: 1.25 $, $Date: 2013-11-08 09:40:40 $
+# $Revision: 1.26 $, $Date: 2013-12-19 18:04:06 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
 Version:	1.5
-Release:	6
+Release:	7
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.26  2013-12-19 18:04:06  glen
+- rel 6: deathbulge comic
+
 Revision 1.25  2013-11-08 09:40:40  glen
 - rel 4, postimees fix by zod
 
