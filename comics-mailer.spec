@@ -1,9 +1,9 @@
-# $Revision: 1.26 $, $Date: 2013-12-19 18:04:06 $
+# $Revision: 1.27 $, $Date: 2015-04-13 06:27:15 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
 Version:	1.5
-Release:	7
+Release:	8
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.27  2015-04-13 06:27:15  glen
+- rel 7, fixes #2, #3
+
 Revision 1.26  2013-12-19 18:04:06  glen
 - rel 6: deathbulge comic
 
