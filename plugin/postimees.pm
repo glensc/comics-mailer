@@ -22,8 +22,10 @@ sub get_url {
 	my @l = $c->look_down(_tag => 'img');
 
 	foreach my $l (@l) {
+		my $img = $l->attr('src');
+		if( $img !~ /^(http|HTTP)/ ) { $img='http:'.$img; }
 		(my $title = $l->attr('alt')) =~ s/ -  \d+\. \w+ \d+//;
-		$this->add_comic($l->attr('src'), $title, $baseurl);
+		$this->add_comic($img, $title, $baseurl);
 	}
 }
 
