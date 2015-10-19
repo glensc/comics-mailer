@@ -18,7 +18,7 @@ sub get_url {
 	$root->parse($content);
 
 	my $l = $root->look_down( _tag => 'div', id => 'comic-container')->find('a');
-	my $p = $root->look_down( _tag => 'img', id => 'featured-comic') or die("cannot find id=featured_comic");;
+	my $p = $root->look_down( _tag => 'img', id => 'featured-comic') or die("cannot find id=featured_comic");
 	my $img = $p->attr('src');
 	if( $img !~ /^(http|HTTP)/ ) { $img='http:'.$img; }
 
