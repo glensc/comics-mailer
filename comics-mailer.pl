@@ -15,6 +15,7 @@ use plugin::pandyland;
 use plugin::garfield;
 use plugin::deathbulge;
 use plugin::depressedalien;
+use plugin::oglaf;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;
