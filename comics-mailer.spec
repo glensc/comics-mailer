@@ -1,9 +1,9 @@
-# $Revision: 1.28 $, $Date: 2015-04-15 10:03:29 $
+# $Revision: 1.29 $, $Date: 2015-10-19 18:44:11 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
 Version:	1.5
-Release:	9
+Release:	10
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.29  2015-10-19 18:44:11  glen
+- added oglaf (GH-5)
+
 Revision 1.28  2015-04-15 10:03:29  glen
 - fix postimees. #4
 
