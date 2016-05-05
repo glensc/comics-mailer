@@ -17,6 +17,7 @@ use plugin::deathbulge;
 use plugin::depressedalien;
 use plugin::oglaf;
 use plugin::cuek;
+use plugin::catversushuman;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;
