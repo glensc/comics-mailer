@@ -24,9 +24,9 @@ sub get_url {
 		$src =~ s/\Qhttps:\E/http:/g;
 
 		my @t = $c->look_down(_tag => 'div', class => 'separator');
-		my $t = @t[1] && @t[1]->as_text || "catversushuman.com";
+		my $text = $t[1] && $t[1]->as_text || "catversushuman.com";
 
-		$this->add_comic($src, $t, $baseurl);
+		$this->add_comic($src, $text, $baseurl);
 
 		# one cat cartoon a day
 		last;
