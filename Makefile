@@ -7,7 +7,11 @@ export PERL5LIB := local/lib/perl5
 all:
 
 test:
-	perl -c comics-mailer.pl 
+	perl -c comics-mailer.pl
+
+run-test:
+	install -d $(CACHE_DIR)
+	XDG_CONFIG_HOME=$(CURDIR) XDG_CACHE_HOME=$(CACHE_DIR) perl comics-mailer.pl
 
 installdeps:
 	cpanm --installdeps -Llocal --notest . \
