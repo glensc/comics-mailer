@@ -2,6 +2,8 @@
 CACHE_DIR       := $(CURDIR)/cache
 CPANM_CACHE     := $(CACHE_DIR)/cpanm
 
+export PERL5LIB := local/lib/perl5
+
 all:
 
 test:
