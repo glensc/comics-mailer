@@ -21,7 +21,7 @@ sub get_url {
 	foreach my $c (@c) {
 		my $i = $c->look_down(_tag => 'img') or next;
 		my $src = $i->attr('src') or next;
-		$src =~ s/\Qhttps:\E/http:/g;
+		$src =~ s/^\Qhttps:\E/http:/g;
 
 		my @t = $c->look_down(_tag => 'div', class => 'separator');
 		my $text = $t[1] && $t[1]->as_text || "catversushuman.com";
