@@ -8,7 +8,7 @@ test:
 	perl -c comics-mailer.pl 
 
 installdeps:
-	cpanm --installdeps -Llocal -n . \
+	cpanm --installdeps -Llocal --notest . \
 		--cascade-search \
 		--save-dists=$(CPANM_CACHE) \
 		--mirror=$(CPANM_CACHE) \
