@@ -18,6 +18,8 @@ use plugin::depressedalien;
 use plugin::oglaf;
 use plugin::cuek;
 use plugin::catversushuman;
+use plugin::nsfw;
+use plugin::bpf;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;

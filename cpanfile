@@ -7,4 +7,4 @@ requires 'File::BaseDir';
 requires 'MIME::Tools';
 requires 'HTML::Tree';
 # NOTE: this module install requires expat-devel
-requires 'XML::RSS';
+requires 'XML::Feed';

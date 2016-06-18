@@ -1,3 +1,5 @@
 /cache/
 *.hist
 debug*.list
+*~
+*.swp
