@@ -3,7 +3,7 @@ package plugin::deathbulge;
 use strict;
 use warnings;
 use base 'plugin';
-use XML::RSS;
+use XML::Feed;
 
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
@@ -14,13 +14,10 @@ sub get_url {
 	my $this = shift;
 	my $content = $this->fetch_url($baseurl) or return;
 
-	my $root = new XML::RSS();
-	$root->parse($content);
+	my @items = XML::Feed->parse(\$content)->entries;
+	my ($img) = $items[0]->content->body =~ m{src="([^\s]+)"};
 
-	my $items = $root->{'items'};
-
-	my ($img) = @$items[0]->{'description'} =~ m{src="([^\s]+)"};
-	$this->add_comic($img, @$items[0]->{'title'}, @$items[0]->{'link'});
+	$this->add_comic($img, $items[0]->title, $items[0]->link);
 }
 
 1;
