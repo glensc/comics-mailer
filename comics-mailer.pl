@@ -20,6 +20,7 @@ use plugin::cuek;
 use plugin::catversushuman;
 use plugin::nsfw;
 use plugin::bpf;
+use plugin::mrlovenstein;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;

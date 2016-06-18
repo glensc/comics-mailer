@@ -13,8 +13,7 @@ use persistent;
 use vars qw(@plugins);
 
 my $ua = LWP::UserAgent->new;
-# pandyland fix
-$ua->agent("Mozilla/5.0");
+$ua->agent("Mozilla/5.0 (X11; Linux x86_64;)");
 $ua->env_proxy();
 
 sub new {
