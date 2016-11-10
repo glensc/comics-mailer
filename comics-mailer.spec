@@ -1,9 +1,9 @@
-# $Revision: 1.32 $, $Date: 2016-05-06 07:17:51 $
+# $Revision: 1.33 $, $Date: 2016-06-20 10:56:50 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
 Version:	1.5
-Release:	13
+Release:	14
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.33  2016-06-20 10:56:50  glen
+- +mrlove, +nsfw, +bpf. #10
+
 Revision 1.32  2016-05-06 07:17:51  glen
 - add cat versus humans, #8
 
