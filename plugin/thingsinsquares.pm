@@ -23,7 +23,9 @@ sub get_url {
 		my $src = $p->attr('src') or next;
 		$src =~ s/^\Qhttps:\E/http:/g;
 
-		$this->add_comic($src, $p->attr('alt'), $baseurl);
+		my $url = $root->look_down(_tag => 'a', 'rel' => 'bookmark')->attr('href') || $baseurl;
+
+		$this->add_comic($src, $p->attr('alt'), $url);
 	}
 }
 
