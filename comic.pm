@@ -127,7 +127,7 @@ sub compose_mail {
 	<meta name="qrichtext" content="1" />
 	<style>
 	b { color: #79965f; font-size: 11pt; font-family: Verdana, Arial, Helvetica; font-weight: bold; display: block; padding-left: 6px; }
-	blockquote img { border: 1px outset black; display: block; }
+	blockquote img { border: 1px outset black; display: block; max-width: 800px; }
 	blockquote { background-color: white; width: 600px; border: 12px solid white; }
 	</style>
 	</head>
