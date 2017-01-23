@@ -1,4 +1,4 @@
-# $Revision: 1.34 $, $Date: 2016-11-10 09:23:54 $
+# $Revision: 1.35 $, $Date: 2017-01-10 11:41:23 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
@@ -7,6 +7,7 @@ Release:	15
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
+Requires:	perl-LWP-Protocol-https
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -79,6 +80,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.35  2017-01-10 11:41:23  glen
+- set max-width, #12
+
 Revision 1.34  2016-11-10 09:23:54  glen
 - Add Things In Squares #11
 
