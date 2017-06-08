@@ -1,9 +1,9 @@
-# $Revision: 1.35 $, $Date: 2017-01-10 11:41:23 $
+# $Revision: 1.36 $, $Date: 2017-01-23 14:17:37 $
 %include	/usr/lib/rpm/macros.perl
 Summary:	Comics Mailer
 Name:		comics-mailer
 Version:	1.5
-Release:	15
+Release:	16
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -80,6 +80,9 @@ rm -rf $RPM_BUILD_ROOT
 All persons listed below can be reached at <cvs_login>@cvs.delfi.ee
 
 $Log: comics-mailer.spec,v $
+Revision 1.36  2017-01-23 14:17:37  glen
+- ensure LWP::Protocol::https is installed
+
 Revision 1.35  2017-01-10 11:41:23  glen
 - set max-width, #12
 
