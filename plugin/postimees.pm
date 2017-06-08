@@ -8,7 +8,7 @@ use HTML::TreeBuilder;
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
-my $baseurl = 'http://www.postimees.ee/koomiks';
+my $baseurl = 'http://www.postimees.ee/comics';
 
 sub get_url {
 	my $this = shift;
@@ -18,7 +18,7 @@ sub get_url {
 	my $root = HTML::TreeBuilder->new;
 	$root->parse($content);
 
-	my $c = $root->look_down(_tag => 'div', class => 'dailyComics') or return;
+	my $c = $root->look_down(_tag => 'div', class => 'comics-items') or return;
 	my @l = $c->look_down(_tag => 'img');
 
 	foreach my $l (@l) {
