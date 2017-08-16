@@ -22,6 +22,7 @@ use plugin::nsfw;
 use plugin::bpf;
 use plugin::mrlovenstein;
 use plugin::thingsinsquares;
+use plugin::dilbert;
 
 our ($debug, $date);
 $debug = 1 if -t STDIN;
