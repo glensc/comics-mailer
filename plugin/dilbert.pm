@@ -16,8 +16,7 @@ sub get_url {
 
     my $root = HTML::TreeBuilder->new()->parse($content);
 
-    my $c = $root->look_down(_tag => 'div', class =>
-        'comic-item-container') or return;
+    my $c = $root->look_down(_tag => 'div', class => qr/comic-item-container/) or warn('Could not find div class=comic-item-container'),return;
 
     my $src = $c->attr('data-image');
     $src =~ s/^\Qhttps:\E/http:/g;
