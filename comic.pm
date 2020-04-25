@@ -2,7 +2,7 @@ package comic;
 
 # $Id$
 # Date: 2002-11-21
-# Author: glen@delfi.ee
+# Author: glen@alkohol.ee
 #
 # Fetches from various websites comics and sends them away with email.
 # Can do email with image attachments and just with url to direct resource.
@@ -115,8 +115,8 @@ sub compose_mail {
 	my $t = strftime('%B %d, %Y', localtime($this->{utime}));
 	my $entity = MIME::Entity->build(
 		'Subject'			=> "DAILY: comics at estonian web ($t)",
-		'Reply-To'			=> 'glen@delfi.ee',
-		'List-Unsubscribe:'	=> '<mailto:glen@delfi.ee?subject=unsub-comics>',
+		'Reply-To'			=> 'glen@alkohol.ee',
+		'List-Unsubscribe:'	=> '<mailto:glen@alkohol.ee?subject=unsub-comics>',
 		'Type'				=> 'multipart/related',
 	);
 
@@ -187,13 +187,11 @@ sub mailer {
 
 	my $hdr = $ent->head->header_hashref;
 	my $body = $ent->stringify_body;
-	foreach (@recip) {
-		$$hdr{To} = $_;
-		my $msg = Mail::Mailer->new;
-		my $fh = $msg->open($hdr);
-		print $fh $body;
-		$fh->close;
-	}
+	$$hdr{Bcc} = join(',', @recip);
+	my $msg = Mail::Mailer->new;
+	my $fh = $msg->open($hdr);
+	print $fh $body;
+	$fh->close;
 }
 
 sub dump {
