@@ -187,13 +187,11 @@ sub mailer {
 
 	my $hdr = $ent->head->header_hashref;
 	my $body = $ent->stringify_body;
-	foreach (@recip) {
-		$$hdr{To} = $_;
-		my $msg = Mail::Mailer->new;
-		my $fh = $msg->open($hdr);
-		print $fh $body;
-		$fh->close;
-	}
+	$$hdr{Bcc} = join(',', @recip);
+	my $msg = Mail::Mailer->new;
+	my $fh = $msg->open($hdr);
+	print $fh $body;
+	$fh->close;
 }
 
 sub dump {
