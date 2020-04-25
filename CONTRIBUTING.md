@@ -1,5 +1,22 @@
 # comics-mailer
 
+## Setting up development
+
+The dependencies are described with [cpanfile],
+install them with [cpanminus]:
+
+```
+cpanm --installdeps .
+```
+
+or to install to `extlib`:
+```
+cpanm -L extlib --installdeps .
+```
+
+[cpanminus]: https://metacpan.org/pod/App::cpanminus
+[cpanfile]: https://metacpan.org/pod/cpanfile
+
 ## Pull requests
 
 1. Fork it.
