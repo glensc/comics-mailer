@@ -1,7 +1,7 @@
 Summary:	Comics Mailer
 Name:		comics-mailer
-Version:	1.5
-Release:	19
+Version:	%{version}
+Release:	%{release}
 License:	GPL v2
 Group:		Networking/Daemons
 BuildRequires:	rpm-perlprov >= 4.1-13
