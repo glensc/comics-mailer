@@ -194,6 +194,13 @@ sub mailer {
 	$fh->close;
 }
 
+sub create_mailer {
+	my $server = $ENV{SMTP_HOST};
+	my $type = $server ne undef ? 'smtp' : 'sendmail';
+
+	return Mail::Mailer->new($type, Server => $server);
+}
+
 sub dump {
 	my $this = shift;
 	my $ent = $this->{attach};
