@@ -188,7 +188,7 @@ sub mailer {
 	my $hdr = $ent->head->header_hashref;
 	my $body = $ent->stringify_body;
 	$$hdr{Bcc} = join(',', @recip);
-	my $msg = Mail::Mailer->new;
+	my $msg = $this->create_mailer();
 	my $fh = $msg->open($hdr);
 	print $fh $body;
 	$fh->close;
