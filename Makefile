@@ -14,7 +14,7 @@ run-test:
 	XDG_CONFIG_HOME=$(CURDIR) XDG_CACHE_HOME=$(CACHE_DIR) perl comics-mailer.pl
 
 installdeps:
-	cpanm --installdeps -Llocal --notest . \
+	cpanm --installdeps -L local --notest . \
 		--cascade-search \
 		--save-dists=$(CPANM_CACHE) \
 		--mirror=$(CPANM_CACHE) \

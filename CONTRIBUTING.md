@@ -9,9 +9,9 @@ install them with [cpanminus]:
 cpanm --installdeps .
 ```
 
-or to install to `extlib`:
+or to install to `local`:
 ```
-cpanm -L extlib --installdeps .
+cpanm -L local --installdeps .
 ```
 
 [cpanminus]: https://metacpan.org/pod/App::cpanminus
