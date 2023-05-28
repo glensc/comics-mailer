@@ -27,5 +27,3 @@ sub get_url {
 
 	$this->add_comic($img, $p->attr('alt').': '.$p->attr('title'), $l);
 }
-
-

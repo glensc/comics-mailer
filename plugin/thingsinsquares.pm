@@ -28,4 +28,3 @@ sub get_url {
 		$this->add_comic($src, $p->attr('alt'), $url);
 	}
 }
-

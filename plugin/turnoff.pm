@@ -29,5 +29,3 @@ sub get_url {
         $this->add_comic($img, $title, $url);
     }
 }
-
-
