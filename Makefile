@@ -1,6 +1,7 @@
 # Makefile for comics-mailer
 CACHE_DIR       := $(CURDIR)/cache
 CPANM_CACHE     := $(CACHE_DIR)/cpanm
+CPAN_MIRROR     := http://www.cpan.org
 
 export PERL5LIB := local/lib/perl5
 
@@ -18,4 +19,4 @@ installdeps:
 		--cascade-search \
 		--save-dists=$(CPANM_CACHE) \
 		--mirror=$(CPANM_CACHE) \
-		--mirror=http://search.cpan.org/CPAN
+		--mirror=$(CPAN_MIRROR)
