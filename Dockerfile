@@ -7,7 +7,7 @@ RUN --mount=type=cache,id=apk,target=/var/cache/apk \
 	set -xeu
 
 	ln -vs /var/cache/apk /etc/apk/cache
-	apk update
+	flock /etc/apk/cache apk update
 
 	# Add packages needed runtime
 	apk add \
@@ -25,7 +25,7 @@ RUN --mount=type=cache,id=apk,target=/var/cache/apk \
 	set -xeu
 
 	ln -vs /var/cache/apk /etc/apk/cache
-	apk update
+	flock /etc/apk/cache apk update
 
 	# base deps and cpanm
 	apk add \
@@ -61,7 +61,7 @@ RUN --mount=type=cache,id=apk,target=/var/cache/apk \
 	set -xeu
 
 	ln -vs /var/cache/apk /etc/apk/cache
-	apk update
+	flock /etc/apk/cache apk update
 
 	apk add \
 		perl-class-data-inheritable \
