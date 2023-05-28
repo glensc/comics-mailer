@@ -68,3 +68,4 @@ COPY --from=build /usr/local/share/perl5/site_perl/ /usr/local/share/perl5/site_
 COPY --chmod=755 comics-mailer.pl .
 COPY *.pl *.pm .
 COPY plugin ./plugin
+ENTRYPOINT ["/app/comics-mailer.pl"]
