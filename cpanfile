@@ -6,5 +6,10 @@ requires perl => '5.008';
 requires 'File::BaseDir';
 requires 'MIME::Tools';
 requires 'HTML::Tree';
+
 # NOTE: this module install requires expat-devel
+# On brew, this could work:
+#brew install expat
+#export EXPATINCPATH="$(brew --prefix)/opt/expat/include"
+#export EXPATLIBPATH="$(brew --prefix)/opt/expat/lib"
 requires 'XML::Feed';
