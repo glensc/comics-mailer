@@ -1,0 +1,9 @@
+version: "3.3"
+
+services:
+  app:
+    image: ghcr.io/glensc/comics-mailer:1.6.0
+    volumes:
+      - ./cache:/root/.cache
+
+# vim:ts=2:sw=2:et
