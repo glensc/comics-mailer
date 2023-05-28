@@ -11,9 +11,22 @@ RUN --mount=type=cache,id=apk,target=/var/cache/apk \
 
 	# Add packages needed runtime
 	apk add \
-		perl-html-tree \
+		perl-class-data-inheritable \
+		perl-class-errorhandler \
+		perl-datetime-format-builder \
+		perl-datetime-format-iso8601 \
+		perl-datetime-format-mail \
+		perl-datetime-format-natural \
+		perl-datetime-format-w3cdtf \
 		perl-file-basedir \
+		perl-html-tree \
+		perl-list-moreutils \
+		perl-lwp-protocol-https \
+		perl-lwp-useragent-determined \
 		perl-mime-tools \
+		perl-module-pluggable \
+		perl-xml-rss \
+		perl-xml-xpath \
 	&& true
 
 	rm /etc/apk/cache
@@ -37,15 +50,10 @@ RUN --mount=type=cache,id=apk,target=/var/cache/apk \
 
 	# test deps
 	apk add \
-		perl-class-errorhandler \
-		perl-datetime-format-iso8601 \
-		perl-datetime-format-natural \
 		perl-module-build \
 		perl-test-deep \
 		perl-test-needs \
 		perl-xml-libxml \
-		perl-xml-rss \
-		perl-xml-xpath \
 	&& true
 
 	rm /etc/apk/cache
@@ -56,35 +64,6 @@ eot
 
 FROM base AS runtime
 VOLUME /root/.cache
-RUN --mount=type=cache,id=apk,target=/var/cache/apk \
-	<<eot
-	set -xeu
-
-	ln -vs /var/cache/apk /etc/apk/cache
-	flock /etc/apk/cache apk update
-
-	apk add \
-		perl-class-data-inheritable \
-		perl-class-errorhandler \
-		perl-datetime-format-builder \
-		perl-datetime-format-iso8601 \
-		perl-datetime-format-mail \
-		perl-datetime-format-natural \
-		perl-datetime-format-w3cdtf \
-		perl-file-basedir \
-		perl-html-tree \
-		perl-list-moreutils \
-		perl-lwp-protocol-https \
-		perl-lwp-useragent-determined \
-		perl-mime-tools \
-		perl-module-pluggable \
-		perl-xml-rss \
-		perl-xml-xpath \
-	&& true
-
-	rm /etc/apk/cache
-eot
-
 COPY --from=build /usr/local/share/perl5/site_perl/ /usr/local/share/perl5/site_perl/
 COPY --chmod=755 comics-mailer.pl .
 COPY *.pl *.pm .
