@@ -1,6 +1,10 @@
-#FROM registry.gitlab.com/pld-linux/pld AS base
-# https://github.com/jpalus/pld-linux-arm
-FROM jpalus/pld-linux-armv6hl AS base
+# --platform=linux/amd64
+FROM registry.gitlab.com/pld-linux/pld AS base-amd64
+# --platform=linux/arm
+FROM jpalus/pld-linux-armv6hl AS base-arm
+
+FROM base-$TARGETARCH AS base
+
 RUN <<eot
     set -xeu
 	# Keep downloads in /var/cache/poldek
