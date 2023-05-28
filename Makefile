@@ -4,6 +4,8 @@ CPANM_CACHE     := $(CACHE_DIR)/cpanm
 CPAN_MIRROR     := http://www.cpan.org
 
 export PERL5LIB := local/lib/perl5
+export EXPATINCPATH := $(brew --prefix)/opt/expat/include
+export EXPATLIBPATH := $(brew --prefix)/opt/expat/lib
 
 all:
 
