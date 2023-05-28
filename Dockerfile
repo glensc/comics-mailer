@@ -18,7 +18,10 @@ RUN \
     <<eot
     set -xeu
 	poldek --up -u \
-		rpm-build-tools
+		perl-devel \
+		rpm-build-tools \
+		rpm-perlprov \
+	&& true
 
 	builder --init-rpm-dir
 eot
