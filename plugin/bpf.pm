@@ -9,7 +9,7 @@ use HTML::TreeBuilder;
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
-my $baseurl = "http://pbfcomics.com/feed/feed.xml";
+my $baseurl = "https://pbfcomics.com/feed/feed.xml";
 
 sub get_url {
 	my $this = shift;

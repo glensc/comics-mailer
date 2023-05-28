@@ -8,7 +8,7 @@ use XML::Feed;
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
-my $baseurl = "http://www.deathbulge.com/rss.xml";
+my $baseurl = "https://www.deathbulge.com/rss.xml";
 
 sub get_url {
 	my $this = shift;

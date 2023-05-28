@@ -10,7 +10,7 @@ use HTML::TreeBuilder;
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
-my $baseurl = "http://geek-and-poke.com/";
+my $baseurl = "https://geek-and-poke.com/";
 
 sub get_url {
 	my $this = shift;

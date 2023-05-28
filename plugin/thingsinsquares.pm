@@ -8,7 +8,7 @@ use HTML::TreeBuilder;
 my $package = __PACKAGE__;
 $plugin::plugins{$package}++;
 
-my $baseurl = "http://www.thingsinsquares.com";
+my $baseurl = "https://www.thingsinsquares.com";
 
 sub get_url {
 	my $this = shift;
