@@ -14,6 +14,8 @@ or to install to `local`:
 cpanm -L local --installdeps .
 ```
 
+Use convenience `make installdeps` to install dependencies.
+
 [cpanminus]: https://metacpan.org/pod/App::cpanminus
 [cpanfile]: https://metacpan.org/pod/cpanfile
 
