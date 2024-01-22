@@ -1,6 +1,6 @@
-/cache/
-/local/
 *.hist
-debug*.list
-*~
 *.swp
+*~
+/cache/
+/debug*.list
+/local/
