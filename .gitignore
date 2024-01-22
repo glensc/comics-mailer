@@ -2,6 +2,7 @@
 *.swp
 *~
 /.idea/
+/bun.lockb
 /cache/
 /debug*.list
 /local/
