@@ -7,6 +7,9 @@ requires 'File::BaseDir';
 requires 'MIME::Tools';
 requires 'HTML::Tree';
 
+# Avoid "Can't verify SSL peers without knowing which Certificate Authorities to trust" error
+requires 'Mozilla::CA';
+
 # NOTE: this module install requires expat-devel
 # On brew, this could work:
 #brew install expat
