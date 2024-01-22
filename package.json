@@ -1,5 +1,5 @@
 {
-  "name": "comics-mailer",
+  "private": true,
   "module": "src/main.ts",
   "type": "module",
   "devDependencies": {
