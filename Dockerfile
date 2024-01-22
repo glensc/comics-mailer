@@ -2,11 +2,10 @@ FROM alpine:3.18 AS os-base
 WORKDIR /app
 
 FROM os-base AS base
-RUN --mount=type=cache,id=apk,target=/var/cache/apk \
+RUN --mount=type=cache,id=apk,target=/etc/apk/cache \
 	<<eot
 	set -xeu
 
-	ln -vs /var/cache/apk /etc/apk/cache
 	flock /etc/apk/cache apk update
 
 	# Add packages needed runtime
@@ -28,16 +27,13 @@ RUN --mount=type=cache,id=apk,target=/var/cache/apk \
 		perl-xml-rss \
 		perl-xml-xpath \
 	&& true
-
-	rm /etc/apk/cache
 eot
 
 FROM base AS build
-RUN --mount=type=cache,id=apk,target=/var/cache/apk \
+RUN --mount=type=cache,id=apk,target=/etc/apk/cache \
 	<<eot
 	set -xeu
 
-	ln -vs /var/cache/apk /etc/apk/cache
 	flock /etc/apk/cache apk update
 
 	# base deps and cpanm
@@ -55,8 +51,6 @@ RUN --mount=type=cache,id=apk,target=/var/cache/apk \
 		perl-test-needs \
 		perl-xml-libxml \
 	&& true
-
-	rm /etc/apk/cache
 
 	# install package not available on alpine itself
 	cpanm XML::Feed
