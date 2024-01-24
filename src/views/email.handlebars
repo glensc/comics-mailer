@@ -9,7 +9,14 @@ blockquote { background-color: white; width: 600px; border: 12px solid white; }
 </style>
 </head>
 <body><blockquote>
-{{ contents }}
+{{#each attachments}}
+<br /><b><div>{{this.description}}</div></b>
+  {{#if this.link}}
+<a href="{{this.link}}"><img alt="{{this.description}}" src="cid:{{this.cid}}"></a>
+  {{else}}
+<img alt="{{this.description}}" src="cid:{{this.cid}}">
+  {{/if}}
+{{/each}}
 </blockquote>
 </body>
 </html>
