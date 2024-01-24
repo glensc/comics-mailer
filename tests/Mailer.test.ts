@@ -11,7 +11,10 @@ const test = async () => {
     }),
   );
 
-  const info: any = await mailer.send({});
+  const info: any = await mailer.send({
+    date: new Date(),
+    subject: "DAILY: comics at estonian web ({{date}})",
+  });
 
   console.log("envelope", info.envelope);
   console.log("messageId", info.messageId);
