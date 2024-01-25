@@ -4,6 +4,7 @@ const env = process.env;
 
 export const GMAIL_USERNAME = env.GMAIL_USERNAME || "";
 export const GMAIL_PASSWORD = env.GMAIL_PASSWORD || "";
+export const MAIL_FROM = env.MAIL_FROM || "";
 export const REPLY_TO = env.REPLY_TO || "";
 
 export const VIEWS_PATH = join(__dirname, "../views");
