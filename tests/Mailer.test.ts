@@ -25,7 +25,10 @@ const test = async () => {
 
   console.log("envelope", info.envelope);
   console.log("messageId", info.messageId);
-  info.message.pipe(process.stdout);
+
+  if (info.message) {
+    info.message.pipe(process.stdout);
+  }
 };
 
 test()
