@@ -19,6 +19,14 @@ export class Scraper {
     return element?.getAttribute("content");
   }
 
+  public ogImage(document: Document) {
+    return this.metaProperty(document, "og:image");
+  }
+
+  public ogUrl(document: Document) {
+    return this.metaProperty(document, "og:url");
+  }
+
   public textContent(document: Document, selector: string) {
     return document.querySelector(selector)?.textContent;
   }
