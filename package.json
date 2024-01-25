@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "jsdom": "^24.0.0",
+    "node-fetch-cache": "^4.1.0",
     "nodemailer": "^6.9.9",
     "nodemailer-express-handlebars": "^6.1.0"
   }
