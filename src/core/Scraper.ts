@@ -12,4 +12,14 @@ export class Scraper {
 
     return dom.window.document;
   }
+
+  public metaProperty(document: Document, name: string) {
+    const element = document.querySelector(`meta[property='${name}']`);
+
+    return element?.getAttribute("content");
+  }
+
+  public textContent(document: Document, selector: string) {
+    return document.querySelector(selector)?.textContent;
+  }
 }
