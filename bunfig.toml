@@ -1,0 +1,5 @@
+# https://bun.sh/docs/runtime/bunfig
+
+# https://bun.sh/docs/runtime/bunfig#install-lockfile
+[install.lockfile]
+print = "yarn"
