@@ -2,7 +2,12 @@ import { JSDOM } from "jsdom";
 
 export class Scraper {
   public async fetch(url: string) {
-    const response = await fetch(url);
+    let response;
+    try {
+      response = await fetch(url);
+    } catch (e) {
+      throw new Error(`${e}: ${JSON.stringify(e)}`);
+    }
 
     return response.text();
   }
@@ -11,6 +16,17 @@ export class Scraper {
     const dom = new JSDOM(html);
 
     return dom.window.document;
+  }
+
+  public forceHttps<T extends string | null | undefined>(url: T): T | string {
+    if (!url) {
+      return url;
+    }
+
+    const link = new URL(url);
+    link.protocol = "https:";
+
+    return String(link);
   }
 
   public metaProperty(document: Document, name: string) {
