@@ -13,6 +13,17 @@ export class Scraper {
     return dom.window.document;
   }
 
+  public forceHttps<T extends string | null | undefined>(url: T): T | string {
+    if (!url) {
+      return url;
+    }
+
+    const link = new URL(url);
+    link.protocol = "https:";
+
+    return String(link);
+  }
+
   public metaProperty(document: Document, name: string) {
     const element = document.querySelector(`meta[property='${name}']`);
 
