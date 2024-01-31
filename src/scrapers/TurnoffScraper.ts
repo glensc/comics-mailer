@@ -9,7 +9,9 @@ export class TurnoffScraper implements ScraperInterface {
     const content = await scraper.fetch(String(feedUrl));
     const document = scraper.createParser(content);
 
-    const link = document.querySelector("rss channel item guid")?.textContent;
+    const link = scraper.forceHttps(
+      document.querySelector("rss channel item guid")?.textContent,
+    );
     if (!link) {
       return;
     }
@@ -18,7 +20,7 @@ export class TurnoffScraper implements ScraperInterface {
     const pageDocument = scraper.createParser(pageContent);
 
     const title = scraper.metaProperty(pageDocument, "og:title");
-    const img = scraper.metaProperty(pageDocument, "og:image");
+    const img = scraper.forceHttps(scraper.metaProperty(pageDocument, "og:image"));
 
     if (!img || !title) {
       return;
