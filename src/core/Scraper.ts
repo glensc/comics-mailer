@@ -2,7 +2,12 @@ import { JSDOM } from "jsdom";
 
 export class Scraper {
   public async fetch(url: string) {
-    const response = await fetch(url);
+    let response;
+    try {
+      response = await fetch(url);
+    } catch (e) {
+      throw new Error(`${e}: ${JSON.stringify(e)}`);
+    }
 
     return response.text();
   }
