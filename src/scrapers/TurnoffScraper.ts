@@ -9,11 +9,16 @@ export class TurnoffScraper implements ScraperInterface {
     const content = await scraper.fetch(String(feedUrl));
     const document = scraper.createParser(content);
 
-    const link = scraper.forceHttps(
+    let link = scraper.forceHttps(
       document.querySelector("rss channel item guid")?.textContent,
     );
     if (!link) {
       return;
+    }
+
+    // https://github.com/oven-sh/bun/issues/8599
+    if (link[-1] !== "/") {
+      link += "/";
     }
 
     const pageContent = await scraper.fetch(link);
