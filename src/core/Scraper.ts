@@ -19,6 +19,10 @@ export class Scraper {
     return dom.window.document;
   }
 
+  public async getDocumentFromUrl(url: string) {
+    return this.createParser(await this.fetch(url));
+  }
+
   public forceHttps<T extends string | undefined >(url: T): T | string {
     if (!url) {
       return url;
