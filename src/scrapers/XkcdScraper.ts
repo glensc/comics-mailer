@@ -14,6 +14,6 @@ export class XkcdScraper implements ScraperInterface {
       return;
     }
 
-    return ([imgurl, title, url]);
+    return scraper.comic(imgurl, title, url);
   }
 }

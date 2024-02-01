@@ -30,6 +30,6 @@ export class TurnoffScraper implements ScraperInterface {
       return;
     }
 
-    return ([img, title, link]);
+    return scraper.comic(img, title, link);
   }
 }

@@ -13,6 +13,6 @@ export class OglafScraper implements ScraperInterface {
       return;
     }
 
-    return ([src, alt, this.url]);
+    return scraper.comic(src, alt, this.url);
   }
 }

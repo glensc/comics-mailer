@@ -15,6 +15,6 @@ export class WumoScraper implements ScraperInterface {
 
     const imgurl = new URL(src, this.url).href;
 
-    return ([imgurl, alt, this.url]);
+    return scraper.comic(imgurl, alt, this.url);
   }
 }
