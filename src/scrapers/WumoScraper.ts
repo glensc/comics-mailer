@@ -4,8 +4,7 @@ export class WumoScraper implements ScraperInterface {
   private readonly url = "https://wumo.com";
 
   public async scrape(scraper: Scraper) {
-    const document = scraper.createParser(await scraper.fetch(this.url));
-
+    const document = await scraper.getDocumentFromUrl(this.url);
     const img = document.querySelector("div.box-content img");
     const src = img?.getAttribute("src");
     const alt = img?.getAttribute("alt");

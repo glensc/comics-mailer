@@ -4,9 +4,8 @@ export class TurnoffScraper implements ScraperInterface {
   private readonly url = "https://turnoff.us";
 
   public async scrape(scraper: Scraper) {
-    const feedUrl = new URL("/feed.xml", this.url);
-    const content = await scraper.fetch(String(feedUrl));
-    const document = scraper.createParser(content);
+    const feedUrl = String(new URL("/feed.xml", this.url));
+    const document = await scraper.getDocumentFromUrl(feedUrl);
 
     let link = scraper.forceHttps(
       scraper.textContent(document, "rss channel item guid"),
