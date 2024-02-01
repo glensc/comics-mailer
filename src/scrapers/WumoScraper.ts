@@ -1,7 +1,7 @@
 import type { Scraper, ScraperInterface } from "../core";
 
 export class WumoScraper implements ScraperInterface {
-  private url = "https://wumo.com";
+  private readonly url = "https://wumo.com";
 
   public async scrape(scraper: Scraper) {
     const document = scraper.createParser(await scraper.fetch(this.url));

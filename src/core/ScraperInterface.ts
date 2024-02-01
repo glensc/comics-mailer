@@ -1,5 +1,5 @@
-import { Scraper } from "./Scraper.ts";
+import { type Scraper } from "./Scraper.ts";
 
-export interface ScraperInterface {
+export type ScraperInterface = {
   scrape(scraper: Scraper): Promise<string[] | undefined>;
-}
+};

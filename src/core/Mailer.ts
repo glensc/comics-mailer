@@ -14,6 +14,6 @@ export class Mailer {
 
     const sendOptions = this.builder.build(options);
 
-    return await this.transport.send(sendOptions);
+    return this.transport.send(sendOptions);
   }
 }

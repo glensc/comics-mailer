@@ -1,7 +1,7 @@
 import type { Scraper, ScraperInterface } from "../core";
 
 export class XkcdScraper implements ScraperInterface {
-  private url = "https://xkcd.com";
+  private readonly url = "https://xkcd.com";
 
   public async scrape(scraper: Scraper) {
     const document = scraper.createParser(await scraper.fetch(this.url));

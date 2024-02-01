@@ -1,7 +1,7 @@
 import { createTransport } from "nodemailer";
 
 export class MailTransport {
-  private transporter;
+  private readonly transporter;
 
   public constructor(options: any) {
     this.transporter = createTransport(options);
@@ -12,6 +12,6 @@ export class MailTransport {
   }
 
   public async send(mailOptions: any) {
-    return await this.transporter.sendMail(mailOptions);
+    return this.transporter.sendMail(mailOptions);
   }
 }

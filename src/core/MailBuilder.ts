@@ -54,9 +54,9 @@ export class MailBuilder {
 
   private* formatAttachments(attachments: Attachment[]) {
     for (const attachment of attachments) {
-      const description = (attachment as any)["description"];
-      const link = (attachment as any)["link"];
-      const cid = attachment.cid;
+      const { description } = (attachment as any);
+      const { link } = (attachment as any);
+      const { cid } = attachment;
 
       yield {
         description,
