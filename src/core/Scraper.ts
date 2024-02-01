@@ -37,7 +37,7 @@ export class Scraper {
   public metaProperty(document: Document, name: string) {
     const element = document.querySelector(`meta[property='${name}']`);
 
-    return element?.getAttribute("content");
+    return element?.getAttribute("content") || undefined;
   }
 
   public ogImage(document: Document) {
