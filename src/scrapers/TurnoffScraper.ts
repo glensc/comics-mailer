@@ -9,7 +9,7 @@ export class TurnoffScraper implements ScraperInterface {
     const document = scraper.createParser(content);
 
     let link = scraper.forceHttps(
-      scraper.textContent(document, "rss channel item guid")
+      scraper.textContent(document, "rss channel item guid"),
     );
 
     if (!link) {
