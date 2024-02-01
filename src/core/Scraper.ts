@@ -1,13 +1,14 @@
 import { JSDOM } from "jsdom";
+import type { HttpClient } from "./HttpClient.ts";
 
 export class Scraper {
+  public constructor(
+    private readonly httpClient: HttpClient,
+  ) {
+  }
+
   public async fetch(url: string) {
-    let response;
-    try {
-      response = await fetch(url);
-    } catch (e) {
-      throw new Error(`${e}: ${JSON.stringify(e)}`);
-    }
+    const response = await this.httpClient.fetch(url);
 
     return response.text();
   }
