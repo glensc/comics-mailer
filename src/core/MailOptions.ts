@@ -9,4 +9,4 @@ export type MailOptions = {
   timezone?: string;
   context?: any;
   attachments?: Attachment[];
-}
+};
