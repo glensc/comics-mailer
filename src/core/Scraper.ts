@@ -53,7 +53,11 @@ export class Scraper {
     return document.querySelector(selector)?.textContent || undefined;
   }
 
-  public comic(img: string, alt: string, url: string) {
+  public comic(img?: string, alt?: string, url?: string) {
+    if (!img || !alt || !url) {
+      return;
+    }
+
     return new Comic(
       img,
       alt,
