@@ -12,6 +12,6 @@ export class MailTransport {
   }
 
   public async send(mailOptions: any) {
-    return await this.transporter.sendMail(mailOptions);
+    return this.transporter.sendMail(mailOptions);
   }
 }
