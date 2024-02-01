@@ -19,7 +19,7 @@ export class Scraper {
     return dom.window.document;
   }
 
-  public forceHttps<T extends string | null | undefined>(url: T): T | string {
+  public forceHttps<T extends string | undefined >(url: T): T | string {
     if (!url) {
       return url;
     }
