@@ -1,7 +1,7 @@
 import type { Scraper, ScraperInterface } from "../core";
 
 export class OglafScraper implements ScraperInterface {
-  private url = "https://oglaf.com";
+  private readonly url = "https://oglaf.com";
 
   public async scrape(scraper: Scraper) {
     const document = scraper.createParser(await scraper.fetch(this.url));

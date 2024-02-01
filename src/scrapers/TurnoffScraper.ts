@@ -1,7 +1,7 @@
 import type { Scraper, ScraperInterface } from "../core";
 
 export class TurnoffScraper implements ScraperInterface {
-  private url = "https://turnoff.us";
+  private readonly url = "https://turnoff.us";
 
   public async scrape(scraper: Scraper) {
     const feedUrl = new URL("/feed.xml", this.url);

@@ -1,7 +1,7 @@
 import { createTransport } from "nodemailer";
 
 export class MailTransport {
-  private transporter;
+  private readonly transporter;
 
   public constructor(options: any) {
     this.transporter = createTransport(options);
