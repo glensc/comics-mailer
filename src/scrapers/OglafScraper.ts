@@ -1,5 +1,4 @@
-import { Scraper } from "../core/Scraper.ts";
-import type { ScraperInterface } from "../core/ScraperInterface.ts";
+import type { Scraper, ScraperInterface } from "../core";
 
 export class OglafScraper implements ScraperInterface {
   private url = "https://oglaf.com";

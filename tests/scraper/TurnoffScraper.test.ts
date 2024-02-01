@@ -1,6 +1,5 @@
 import { TurnoffScraper } from "../../src/scrapers/TurnoffScraper.ts";
-import { Scraper } from "../../src/core/Scraper.ts";
-import { HttpClient } from "../../src/core/HttpClient.ts";
+import { HttpClient, Scraper } from "../../src/core";
 
 const test = async () => {
   const scraper = new Scraper(HttpClient.create());

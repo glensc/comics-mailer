@@ -1,3 +1,3 @@
-import { HttpClient } from "../core/HttpClient.ts";
+import { HttpClient } from "../core";
 
 export default HttpClient.create();

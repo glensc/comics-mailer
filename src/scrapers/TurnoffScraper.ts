@@ -1,5 +1,4 @@
-import { Scraper } from "../core/Scraper.ts";
-import type { ScraperInterface } from "../core/ScraperInterface.ts";
+import type { Scraper, ScraperInterface } from "../core";
 
 export class TurnoffScraper implements ScraperInterface {
   private url = "https://turnoff.us";
