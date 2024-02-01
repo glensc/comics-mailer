@@ -4,8 +4,7 @@ export class XkcdScraper implements ScraperInterface {
   private readonly url = "https://xkcd.com";
 
   public async scrape(scraper: Scraper) {
-    const document = scraper.createParser(await scraper.fetch(this.url));
-
+    const document = await scraper.getDocumentFromUrl(this.url);
     const element = document.querySelector("div#comic img");
     const title = element?.getAttribute("title");
     const imgurl = scraper.ogImage(document);
