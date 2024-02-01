@@ -6,12 +6,8 @@ export class OglafScraper implements ScraperInterface {
   public async scrape(scraper: Scraper) {
     const document = await scraper.getDocumentFromUrl(this.url);
     const element = document.querySelector("img[id='strip']");
-    const src = element?.getAttribute("src");
-    const alt = element?.getAttribute("alt");
-
-    if (!src || !alt) {
-      return;
-    }
+    const src = element?.getAttribute("src") || undefined;
+    const alt = element?.getAttribute("alt") || undefined;
 
     return scraper.comic(src, alt, this.url);
   }

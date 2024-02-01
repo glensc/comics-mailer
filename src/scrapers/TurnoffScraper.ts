@@ -22,13 +22,8 @@ export class TurnoffScraper implements ScraperInterface {
 
     const pageContent = await scraper.fetch(link);
     const pageDocument = scraper.createParser(pageContent);
-
     const title = scraper.metaProperty(pageDocument, "og:title");
     const img = scraper.forceHttps(scraper.metaProperty(pageDocument, "og:image"));
-
-    if (!img || !title) {
-      return;
-    }
 
     return scraper.comic(img, title, link);
   }
