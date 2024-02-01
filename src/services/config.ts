@@ -1,6 +1,6 @@
 import { join } from "path";
 
-const env = process.env;
+const { env } = process;
 
 export const GMAIL_USERNAME = env.GMAIL_USERNAME || "";
 export const GMAIL_PASSWORD = env.GMAIL_PASSWORD || "";
