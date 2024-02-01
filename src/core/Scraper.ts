@@ -23,7 +23,7 @@ export class Scraper {
     return this.createParser(await this.fetch(url));
   }
 
-  public forceHttps<T extends string | undefined >(url: T): T | string {
+  public forceHttps<T extends string | undefined>(url: T): T | string {
     if (!url) {
       return url;
     }
