@@ -1,3 +1,4 @@
+import type { Comic } from "./Comic.ts";
 import type { HttpClient } from "./HttpClient.ts";
 import { basename } from "node:path";
 import { createHash } from "node:crypto";
@@ -8,17 +9,17 @@ export class AttachmentBuilder {
   ) {
   }
 
-  public async create(url: string, title: string, rootUrl: string) {
-    const response = await this.client.fetch(url);
+  public async create(comic: Comic) {
+    const response = await this.client.fetch(comic.img);
     const content = Buffer.from(await response.arrayBuffer());
 
     const attachment = {
-      filename: this.getFilename(url),
+      filename: this.getFilename(comic.img),
       cid: this.createContentId(content),
       contentType: response.headers.get("Content-Type") || undefined,
       content,
-      description: title,
-      link: rootUrl,
+      description: comic.title,
+      link: comic.url,
     };
 
     return attachment;
