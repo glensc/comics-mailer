@@ -49,6 +49,6 @@ export class Scraper {
   }
 
   public textContent(document: Document, selector: string) {
-    return document.querySelector(selector)?.textContent;
+    return document.querySelector(selector)?.textContent || undefined;
   }
 }
