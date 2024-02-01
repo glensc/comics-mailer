@@ -1,7 +1,7 @@
 import { Mailer } from "../src/core/Mailer.ts";
 import { MailTransport } from "../src/core/MailTransport.ts";
 import { MailBuilder } from "../src/core/MailBuilder.ts";
-import { VIEWS_PATH } from "../src/services/config.ts";
+import { BCC, REPLY_TO, VIEWS_PATH } from "../src/services/config.ts";
 import { AttachmentBuilder } from "../src/core/AttachmentBuilder.ts";
 import { HttpClient } from "../src/core/HttpClient.ts";
 
@@ -20,6 +20,8 @@ const test = async () => {
   const info: any = await mailer.send({
     date: new Date(),
     subject: "DAILY: comics at estonian web ({{date}})",
+    replyTo: REPLY_TO,
+    bcc: [BCC],
     attachments: [attachment],
   });
 
