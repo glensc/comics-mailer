@@ -1,9 +1,5 @@
-import { Mailer } from "../src/core/Mailer.ts";
-import { MailTransport } from "../src/core/MailTransport.ts";
-import { MailBuilder } from "../src/core/MailBuilder.ts";
+import { Mailer, MailTransport, MailBuilder, AttachmentBuilder, HttpClient } from "../src/core";
 import { MAIL_BCC, MAIL_REPLY_TO, VIEWS_PATH } from "../src/services/config.ts";
-import { AttachmentBuilder } from "../src/core/AttachmentBuilder.ts";
-import { HttpClient } from "../src/core/HttpClient.ts";
 
 const test = async () => {
   const mailer = new Mailer(

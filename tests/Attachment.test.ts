@@ -1,5 +1,4 @@
-import { AttachmentBuilder } from "../src/core/AttachmentBuilder.ts";
-import { HttpClient } from "../src/core/HttpClient.ts";
+import { AttachmentBuilder, HttpClient } from "../src/core";
 
 const test = async () => {
   const ab = new AttachmentBuilder(HttpClient.create());

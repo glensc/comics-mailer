@@ -1,4 +1,4 @@
-import { MailTransport } from "../core/MailTransport.ts";
+import { MailTransport } from "../core";
 import { GMAIL_PASSWORD, GMAIL_USERNAME } from "./config.ts";
 
 const options: any = {
