@@ -1,4 +1,5 @@
 import type { AttachmentBuilder } from "./AttachmentBuilder.ts";
+import type { Comic } from "./Comic.ts";
 import type { ScraperInterface } from "./ScraperInterface.ts";
 import type { Scraper } from "./Scraper.ts";
 
@@ -10,31 +11,31 @@ export class ScrapeRunner {
   }
 
   public async run(scrapers: ScraperInterface[]) {
-    const scraped = await this.scrape(scrapers);
-    const attachments = await this.getAttachments(scraped);
+    const comics = await this.scrape(scrapers);
+    const attachments = await this.getAttachments(comics);
 
     return attachments;
   }
 
-  private async getAttachments(scraped: string[][]) {
+  private async getAttachments(scraped: Comic[]) {
     return Promise.all(Array.from(this.prepareAttachments(scraped)));
   }
 
-  private* prepareAttachments(scraped: string[][]) {
-    for (const [url, description, baseUrl] of scraped) {
-      yield this.ab.create(url, description, baseUrl);
+  private* prepareAttachments(comics: Comic[]) {
+    for (const comic of comics) {
+      yield this.ab.create(comic);
     }
   }
 
   private async scrape(scrapers: ScraperInterface[]) {
     const collected = [];
     const promises = Promise.all(Array.from(this.prepare(scrapers)));
-    for await (const result of await promises) {
-      if (!result) {
+    for await (const comic of await promises) {
+      if (!comic) {
         continue;
       }
 
-      collected.push(result);
+      collected.push(comic);
     }
 
     return collected;

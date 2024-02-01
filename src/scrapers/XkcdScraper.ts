@@ -6,14 +6,10 @@ export class XkcdScraper implements ScraperInterface {
   public async scrape(scraper: Scraper) {
     const document = await scraper.getDocumentFromUrl(this.url);
     const element = document.querySelector("div#comic img");
-    const title = element?.getAttribute("title");
+    const title = element?.getAttribute("title") || undefined;
     const imgurl = scraper.ogImage(document);
     const url = scraper.ogUrl(document);
 
-    if (!imgurl || !title || !url) {
-      return;
-    }
-
-    return ([imgurl, title, url]);
+    return scraper.comic(imgurl, title, url);
   }
 }

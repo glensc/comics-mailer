@@ -1,3 +1,4 @@
+import { Comic } from "./Comic.ts";
 import { JSDOM } from "jsdom";
 import type { HttpClient } from "./HttpClient.ts";
 
@@ -50,5 +51,17 @@ export class Scraper {
 
   public textContent(document: Document, selector: string) {
     return document.querySelector(selector)?.textContent || undefined;
+  }
+
+  public comic(img?: string, alt?: string, url?: string) {
+    if (!img || !alt || !url) {
+      return;
+    }
+
+    return new Comic(
+      img,
+      alt,
+      url,
+    );
   }
 }

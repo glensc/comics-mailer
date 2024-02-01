@@ -7,14 +7,9 @@ export class WumoScraper implements ScraperInterface {
     const document = await scraper.getDocumentFromUrl(this.url);
     const img = document.querySelector("div.box-content img");
     const src = img?.getAttribute("src");
-    const alt = img?.getAttribute("alt");
+    const alt = img?.getAttribute("alt") || undefined;
+    const imgurl = src ? new URL(src, this.url).href : undefined;
 
-    if (!src || !alt) {
-      return;
-    }
-
-    const imgurl = new URL(src, this.url).href;
-
-    return ([imgurl, alt, this.url]);
+    return scraper.comic(imgurl, alt, this.url);
   }
 }
