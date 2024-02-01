@@ -10,4 +10,6 @@ const test = async () => {
 };
 
 test()
-  .catch(e => console.error(e.message));
+  .catch(e => {
+    console.error(e.message);
+  });
