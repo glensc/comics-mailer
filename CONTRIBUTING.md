@@ -2,22 +2,14 @@
 
 ## Setting up development
 
-The dependencies are described with [cpanfile],
-install them with [cpanminus]:
+1. Install [bun]
+1. Create [GMail Application Password]
+1. Set `GMAIL_USERNAME`, `GMAIL_PASSWORD` env variables
+1. You may also need to set `MAIL_FROM`, `MAIL_REPLY_TO` env variables
+1. Test sending an email to `user@example.com`: `bun run user@example.com`
 
-```
-cpanm --installdeps .
-```
-
-or to install to `local`:
-```
-cpanm -L local --installdeps .
-```
-
-Use convenience `make installdeps` to install dependencies.
-
-[cpanminus]: https://metacpan.org/pod/App::cpanminus
-[cpanfile]: https://metacpan.org/pod/cpanfile
+[bun]: https://bun.sh/
+[GMail Application Password]: https://myaccount.google.com/apppasswords
 
 ## Pull requests
 
