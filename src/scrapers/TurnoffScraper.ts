@@ -28,7 +28,7 @@ export class TurnoffScraper implements ScraperInterface {
     }
 
     // https://github.com/oven-sh/bun/issues/8599
-    if (link[-1] !== "/") {
+    if (link[link.length - 1] !== "/") {
       link += "/";
     }
 
