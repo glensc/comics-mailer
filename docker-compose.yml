@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   app:
-    image: ghcr.io/glensc/comics-mailer:1.6.0-arm-v7
+    image: ghcr.io/glensc/comics-mailer:main
     volumes:
       - ./cache:/root/.cache
     env_file: .env
