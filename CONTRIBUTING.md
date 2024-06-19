@@ -6,7 +6,7 @@
 1. Create [GMail Application Password]
 1. Set `GMAIL_USERNAME`, `GMAIL_PASSWORD` env variables
 1. You may also need to set `MAIL_FROM`, `MAIL_REPLY_TO` env variables
-1. Test sending an email to `user@example.com`: `bun run user@example.com`
+1. Test sending an email to `user@example.com`: `bun start user@example.com`
 
 [bun]: https://bun.sh/
 [GMail Application Password]: https://myaccount.google.com/apppasswords
