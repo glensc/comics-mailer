@@ -1,9 +1,5 @@
-*.hist
 *.swp
 *~
 /.env
 /.idea/
-/cache/
-/debug*.list
-/local/
 /node_modules/

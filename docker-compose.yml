@@ -3,21 +3,6 @@ version: "3.3"
 services:
   app:
     image: ghcr.io/glensc/comics-mailer:main
-    volumes:
-      - ./cache:/root/.cache
     env_file: .env
-    environment:
-      SMTP_HOST: mail
-
-  mail:
-    # https://hub.docker.com/r/bytemark/smtp/
-    image: bytemark/smtp
-    restart: always
-    environment:
-      # https://app.sendgrid.com/guide/integrate/langs/smtp
-      RELAY_HOST: smtp.sendgrid.net
-      RELAY_PORT: 465
-      RELAY_USERNAME: apikey
-      RELAY_PASSWORD: $SENDGRID_KEY
 
 # vim:ts=2:sw=2:et
