@@ -38,3 +38,5 @@ CMD [ "bun", "run", "start" ]
 COPY --from=install /runtime/node_modules node_modules
 COPY --from=prerelease /app/package.json .
 COPY --from=prerelease /app/src/ ./src/
+ARG APP_VERSION=unknown
+ENV APP_VERSION=$APP_VERSION
