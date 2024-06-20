@@ -56,6 +56,7 @@ export class ScrapeRunner {
    */
   private async filterFresh(comics: Comic[]) {
     const fresh: Comic[] = [];
+    await this.deliveredState.load();
 
     for (const comic of comics) {
       if (this.deliveredState.has(comic.img)) {
