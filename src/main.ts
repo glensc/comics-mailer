@@ -10,6 +10,11 @@ const main = async (...recipients: string[]) => {
 
   const attachments = await scrapeRunner.run(scrapers);
 
+  if (!attachments.length) {
+    console.info("No comics found; Skip Mailing");
+    return;
+  }
+
   await mailer.send({
     from: MAIL_FROM,
     date: new Date(),
