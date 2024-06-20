@@ -18,6 +18,8 @@ const main = async (...recipients: string[]) => {
     bcc: recipients,
     attachments,
   });
+
+  await scrapeRunner.updateDeliveryState(attachments);
 };
 
 if (import.meta.path == Bun.main) {
