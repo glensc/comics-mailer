@@ -14,7 +14,8 @@ export class ScrapeRunner {
 
   public async run(scrapers: ScraperInterface[]) {
     const comics = await this.scrape(scrapers);
-    const attachments = await this.getAttachments(comics);
+    const freshComics = await this.filterFresh(comics);
+    const attachments = await this.getAttachments(freshComics);
 
     return attachments;
   }
