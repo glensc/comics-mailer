@@ -1,5 +1,6 @@
 export { AttachmentBuilder } from "./AttachmentBuilder";
 export { Comic } from "./Comic";
+export { DeliveredState } from "./DeliveredState";
 export { HttpClient } from "./HttpClient";
 export { MailBuilder } from "./MailBuilder";
 export { MailTransport } from "./MailTransport";
