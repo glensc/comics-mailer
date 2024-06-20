@@ -4,5 +4,7 @@ services:
   app:
     image: ghcr.io/glensc/comics-mailer:2
     env_file: .env
+    volumes:
+      - ./state:/app/state
 
 # vim:ts=2:sw=2:et
