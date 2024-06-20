@@ -1,5 +1,6 @@
 import type { AttachmentBuilder } from "./AttachmentBuilder.ts";
 import type { Comic } from "./Comic.ts";
+import type { DeliveredState } from "./DeliveredState.ts";
 import type { ScraperInterface } from "./ScraperInterface.ts";
 import type { Scraper } from "./Scraper.ts";
 
@@ -7,6 +8,7 @@ export class ScrapeRunner {
   public constructor(
     private readonly scraper: Scraper,
     private readonly ab: AttachmentBuilder,
+    private readonly deliveredState: DeliveredState,
   ) {
   }
 
