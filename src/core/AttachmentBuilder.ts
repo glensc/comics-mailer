@@ -14,6 +14,7 @@ export class AttachmentBuilder {
     const content = Buffer.from(await response.arrayBuffer());
 
     const attachment = {
+      img: comic.img,
       filename: this.getFilename(comic.img),
       cid: this.createContentId(content),
       contentType: response.headers.get("Content-Type") || undefined,
