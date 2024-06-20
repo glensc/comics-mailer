@@ -3,6 +3,7 @@ import type { Comic } from "./Comic.ts";
 import type { DeliveredState } from "./DeliveredState.ts";
 import type { ScraperInterface } from "./ScraperInterface.ts";
 import type { Scraper } from "./Scraper.ts";
+import type { Attachment } from "nodemailer/lib/mailer";
 
 export class ScrapeRunner {
   public constructor(
@@ -65,5 +66,14 @@ export class ScrapeRunner {
     }
 
     return fresh;
+  }
+
+  public async updateDeliveryState(attachments: Attachment[]) {
+    for (const attachment of attachments) {
+      const { img } = (attachment as any);
+      this.deliveredState.add(img);
+    }
+
+    await this.deliveredState.store();
   }
 }
