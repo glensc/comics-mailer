@@ -48,4 +48,21 @@ export class ScrapeRunner {
       yield scraper.scrape(this.scraper);
     }
   }
+
+  /**
+   * Filter out comics that have been already delivered
+   */
+  private async filterFresh(comics: Comic[]) {
+    const fresh: Comic[] = [];
+
+    for (const comic of comics) {
+      if (this.deliveredState.has(comic.img)) {
+        continue;
+      }
+
+      fresh.push(comic);
+    }
+
+    return fresh;
+  }
 }
