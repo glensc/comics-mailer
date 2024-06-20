@@ -9,4 +9,4 @@ export const MAIL_REPLY_TO = env.MAIL_REPLY_TO || "";
 export const MAIL_BCC = env.MAIL_BCC || "";
 
 export const VIEWS_PATH = join(__dirname, "../views");
-export const DELIVERY_STATE_PATH = join(__dirname, "../delivery-state.json");
+export const DELIVERY_STATE_PATH = join(__dirname, "../../state/delivery-state.json");
