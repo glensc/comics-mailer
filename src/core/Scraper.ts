@@ -46,7 +46,7 @@ export class Scraper {
     return urls;
   }
 
-  public nextData(document: Document) {
+  public nextData<T = any>(document: Document): null | T {
     const jsonData = document.querySelector<HTMLScriptElement>(`script[id="__NEXT_DATA__"][type="application/json"]`);
 
     if (!jsonData?.textContent) {
