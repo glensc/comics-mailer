@@ -35,6 +35,42 @@ export class Scraper {
     return String(link);
   }
 
+  public linkPreloads(document: Document) {
+    const links = document.querySelectorAll<HTMLLinkElement>(`link[rel="preload"][as="image"]`);
+
+    const urls = [];
+    for (const link of links) {
+      urls.push(link.href);
+    }
+
+    return urls;
+  }
+
+  public nextData<T = any>(document: Document): null | T {
+    const jsonData = document.querySelector<HTMLScriptElement>(`script[id="__NEXT_DATA__"][type="application/json"]`);
+
+    if (!jsonData?.textContent) {
+      return null;
+    }
+
+    return JSON.parse(jsonData.textContent);
+  }
+
+  public nextDataUrlState(document: Document) {
+    const nextData = this.nextData(document);
+    const urqlState = nextData?.props?.pageProps?.urqlState;
+    if (!urqlState) {
+      return [];
+    }
+
+    const states = [];
+    for (const state of Object.values<{ data: string }>(urqlState)) {
+      states.push(JSON.parse(state.data));
+    }
+
+    return states;
+  }
+
   public metaProperty(document: Document, name: string) {
     const element = document.querySelector(`meta[property='${name}']`);
 
