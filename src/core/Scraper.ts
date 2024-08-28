@@ -56,6 +56,17 @@ export class Scraper {
     return JSON.parse(jsonData.textContent);
   }
 
+  public nextDataUrlState(document: Document) {
+    const nextData = this.nextData(document);
+
+    const states = [];
+    for (const state of Object.values<{ data: string }>(nextData.props.pageProps.urqlState)) {
+      states.push(JSON.parse(state.data));
+    }
+
+    return states;
+  }
+
   public metaProperty(document: Document, name: string) {
     const element = document.querySelector(`meta[property='${name}']`);
 
