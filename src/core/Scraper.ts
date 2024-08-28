@@ -58,9 +58,13 @@ export class Scraper {
 
   public nextDataUrlState(document: Document) {
     const nextData = this.nextData(document);
+    const urqlState = nextData?.props?.pageProps?.urqlState;
+    if (!urqlState) {
+      return [];
+    }
 
     const states = [];
-    for (const state of Object.values<{ data: string }>(nextData.props.pageProps.urqlState)) {
+    for (const state of Object.values<{ data: string }>(urqlState)) {
       states.push(JSON.parse(state.data));
     }
 
