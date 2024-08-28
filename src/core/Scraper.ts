@@ -35,6 +35,17 @@ export class Scraper {
     return String(link);
   }
 
+  public linkPreloads(document: Document) {
+    const links = document.querySelectorAll<HTMLLinkElement>(`link[rel="preload"][as="image"]`);
+
+    const urls = [];
+    for (const link of links) {
+      urls.push(link.href);
+    }
+
+    return urls;
+  }
+
   public metaProperty(document: Document, name: string) {
     const element = document.querySelector(`meta[property='${name}']`);
 
