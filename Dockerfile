@@ -28,6 +28,10 @@ COPY . .
 ENV NODE_ENV=production
 RUN bun test
 
+# https://bun.sh/docs/bundler/executables
+# compile everything to a binary called cli which includes the bun runtime
+RUN bun bundle
+
 # Copy production dependencies and source code into final image
 FROM base AS release
 # Run the app
