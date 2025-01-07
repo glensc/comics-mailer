@@ -1,5 +1,9 @@
 # https://bun.sh/docs/runtime/bunfig
 
+[install]
+# https://bun.sh/blog/bun-v1.1.40#new-install-savetextlockfile-in-bunfig-toml
+saveTextLockfile = true
+
 # https://bun.sh/docs/runtime/bunfig#install-lockfile
 [install.lockfile]
 print = "yarn"
