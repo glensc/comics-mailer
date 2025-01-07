@@ -3,6 +3,7 @@
   "module": "src/main.ts",
   "type": "module",
   "scripts": {
+    "bundle": "bun build src/main.ts --compile --outfile cli",
     "start": "bun run src/main.ts"
   },
   "devDependencies": {
