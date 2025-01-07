@@ -32,7 +32,6 @@ RUN bun test
 FROM base AS release
 # Run the app
 USER bun
-EXPOSE 3000/tcp
 ENTRYPOINT [ "bun", "run", "start" ]
 
 COPY --from=install /runtime/node_modules node_modules/
