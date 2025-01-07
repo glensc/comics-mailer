@@ -3,7 +3,7 @@
 
 # Use the official Bun image
 # See all versions at https://hub.docker.com/r/oven/bun/tags
-FROM oven/bun:1 AS base
+FROM oven/bun:1-alpine AS base
 WORKDIR /app
 
 # Install dependencies into temp directory
@@ -32,7 +32,6 @@ RUN bun test
 FROM base AS release
 # Run the app
 USER bun
-EXPOSE 3000/tcp
 ENTRYPOINT [ "bun", "run", "start" ]
 
 COPY --from=install /runtime/node_modules node_modules/
