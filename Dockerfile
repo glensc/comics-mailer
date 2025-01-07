@@ -45,6 +45,15 @@ RUN \
     && apk add --no-cache libstdc++ \
     && exit 0
 
+FROM runtime-base AS binary
+USER bun
+ENTRYPOINT [ "/app/cli" ]
+COPY --from=prerelease /app/cli ./cli
+COPY --from=prerelease /app/src/views ./src/views/
+COPY --from=prerelease /app/node_modules/jsdom/lib/jsdom/living/xhr/xhr-sync-worker.js ./node_modules/jsdom/lib/jsdom/living/xhr/xhr-sync-worker.js
+ARG APP_VERSION=unknown
+ENV APP_VERSION=$APP_VERSION
+
 # Copy production dependencies and source code into final image
 FROM base AS release
 # Run the app
