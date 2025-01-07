@@ -64,8 +64,8 @@ export class Scraper {
     }
 
     const states = [];
-    for (const state of Object.values<{ data: string }>(urqlState)) {
-      states.push(JSON.parse(state.data));
+    for (const { data } of Object.values<{ data: string }>(urqlState)) {
+      states.push(JSON.parse(data));
     }
 
     return states;
