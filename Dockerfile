@@ -32,6 +32,18 @@ RUN bun test
 # compile everything to a binary called cli which includes the bun runtime
 RUN bun bundle
 
+# Use same base image
+# https://github.com/oven-sh/bun/blob/206d2edf126f3e0d1abdce5a581115f60d584ecd/dockerhub/alpine/Dockerfile#L1
+FROM alpine:3.20 AS runtime-base
+WORKDIR /app
+
+# Setup bun user
+# https://github.com/oven-sh/bun/blob/206d2edf126f3e0d1abdce5a581115f60d584ecd/dockerhub/alpine/Dockerfile#L60C1-L65C54
+RUN \
+    addgroup -g 1000 bun \
+    && adduser -u 1000 -G bun -s /bin/sh -D bun \
+    && exit 0
+
 # Copy production dependencies and source code into final image
 FROM base AS release
 # Run the app
