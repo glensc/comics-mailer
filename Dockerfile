@@ -42,6 +42,7 @@ WORKDIR /app
 RUN \
     addgroup -g 1000 bun \
     && adduser -u 1000 -G bun -s /bin/sh -D bun \
+    && apk add --no-cache libstdc++ \
     && exit 0
 
 # Copy production dependencies and source code into final image
