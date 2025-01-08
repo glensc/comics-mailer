@@ -27,6 +27,6 @@ const main = async (...recipients: string[]) => {
   await scrapeRunner.updateDeliveryState(attachments);
 };
 
-if (import.meta.path == Bun.main) {
+(async function () {
   await main(...process.argv.slice(2));
-}
+})();
