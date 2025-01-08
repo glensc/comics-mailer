@@ -48,9 +48,9 @@ RUN \
 FROM runtime-base AS binary
 USER bun
 ENTRYPOINT [ "/app/cli" ]
+COPY --from=install /deps/node_modules/jsdom/lib/jsdom/living/xhr/xhr-sync-worker.js ./node_modules/jsdom/lib/jsdom/living/xhr/xhr-sync-worker.js
 COPY --from=prerelease /app/cli ./cli
 COPY --from=prerelease /app/src/views ./src/views/
-COPY --from=prerelease /app/node_modules/jsdom/lib/jsdom/living/xhr/xhr-sync-worker.js ./node_modules/jsdom/lib/jsdom/living/xhr/xhr-sync-worker.js
 ARG APP_VERSION=unknown
 ENV APP_VERSION=$APP_VERSION
 
