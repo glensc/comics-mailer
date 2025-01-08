@@ -55,7 +55,7 @@ ARG APP_VERSION=unknown
 ENV APP_VERSION=$APP_VERSION
 
 # Copy production dependencies and source code into final image
-FROM base AS release
+FROM base AS source
 # Run the app
 USER bun
 ENTRYPOINT [ "bun", "run", "start" ]
@@ -65,3 +65,5 @@ COPY --from=prerelease /app/package.json ./
 COPY --from=prerelease /app/src/ ./src/
 ARG APP_VERSION=unknown
 ENV APP_VERSION=$APP_VERSION
+
+FROM binary AS release
